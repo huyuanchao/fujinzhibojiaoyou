@@ -7,7 +7,7 @@
 <meta content="yes" name="apple-mobile-web-app-capable" />
 <meta content="black" name="apple-mobile-web-app-status-bar-style" />
 <meta content="telephone=no" name="format-detection" />
-<title>同城一夜情  - www.niumawu.com 牛码屋源码网</title>
+<title>靠谱婚恋交友</title>
 </head>
 <style type="text/css">
 
