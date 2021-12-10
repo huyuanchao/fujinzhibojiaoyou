@@ -1,0 +1,237 @@
+{template 'common/header'}
+<ul class="nav nav-tabs">
+	<li {if $operation == 'display'}class="active"{/if}><a href="{php echo $this->createWebUrl('safe', array('op' => 'display'))}">å®‰å…¨ä¸­å¿ƒç®¡ç†</a></li>
+	<li {if $operation == 'post'}class="active"{/if}><a href="{php echo $this->createWebUrl('safe', array('op' => 'post'))}">{if $id==0}æ·»åŠ å®‰å…¨æ–‡ç« {else}ç¼–è¾‘å®‰å…¨æ–‡ç« {/if}</a></li>
+	
+</ul>
+<style>
+.panel-body {
+padding: 10px;
+}
+</style>
+{if $operation == 'post'}
+<div class="main">
+	<form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+	<input type="hidden" name="parentid" value="{$parent['id']}" />
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				ç®¡ç†å®‰å…¨ä¸­å¿ƒ
+			</div>
+			{if !empty($parentid)}
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">ä¸Šçº§ç±»å‹</label>
+					<div class="col-sm-5">
+						{$parent['name']}
+					</div>
+				</div>
+			</div>
+			{/if}
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">æ’åº</label>
+					<div class="col-sm-5">
+						<input type="text" name="displayorder" class="form-control" value="{$category['displayorder']}" />
+					</div>
+				</div>
+			</div>
+
+			{if $wenzhang==1}
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">å®‰å…¨æ–‡ç« åç§°</label>
+					<div class="col-sm-5">
+						<input type="text" name="catename" class="form-control" value="{$category['name']}" />
+					</div>
+				</div>
+			</div>
+
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">å®‰å…¨æ–‡ç« å†…å®¹</label>
+					<div class="col-sm-5">
+						<textarea name="description" id="description" class="form-control" rows="10">{$category['description']}</textarea>
+					</div>
+				</div>
+			</div>
+
+			{else}
+				{if !empty($parentid)}
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">å®‰å…¨æ–‡ç« åç§°</label>
+							<div class="col-sm-5">
+								<input type="text" name="catename" class="form-control" value="{$category['name']}" />
+							</div>
+						</div>
+					</div>
+
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">å®‰å…¨æ–‡ç« å†…å®¹</label>
+							<div class="col-sm-5">
+								<textarea name="description" id="description" class="form-control" rows="10">{$category['description']}</textarea>
+							</div>
+						</div>
+					</div>
+				{else}
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">åˆ†ç±»åç§°</label>
+							<div class="col-sm-5">
+								<input type="text" name="catename" class="form-control" value="{$category['name']}" />
+							</div>
+						</div>
+					</div>
+
+					<div class="panel-body">
+						<div class="form-group">
+							<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">æ˜¾ç¤ºé¡ºåº</label>
+							<div class="col-sm-5">
+			                    <label for="enabled12" class="radio-inline"><input type="radio" name="paixu" value="0" id="enabled12"  {if empty($category['paixu']) || $category['paixu'] == 0}checked="true"{/if} /> ä¸€è¡Œä¸€ä¸ª</label>
+								&nbsp;&nbsp;&nbsp;
+			                    <label for="enabled13" class="radio-inline"><input type="radio" name="paixu" value="1" id="enabled13" {if !empty($category['paixu']) && $category['paixu'] == 1}checked="true"{/if} /> ä¸€è¡Œä¸¤ä¸ª</label>
+							</div>
+						</div>
+					</div>
+				{/if}
+
+			{/if}
+
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">æ˜¯å¦æ˜¾ç¤º</label>
+					<div class="col-sm-5">
+						<label for="enabled11" class="radio-inline"><input type="radio" name="enabled" value="1" id="enabled11" {if !empty($category['enabled']) && $category['enabled'] == 1}checked="true"{/if} /> æ˜¯</label>
+	                    &nbsp;&nbsp;&nbsp;
+	                    <label for="enabled10" class="radio-inline"><input type="radio" name="enabled" value="0" id="enabled10"  {if empty($category['enabled']) || $category['enabled'] == 0}checked="true"{/if} /> å¦</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="form-group col-sm-12">
+				<input type="hidden" name="token" value="{$_W['token']}" />
+				<input type="hidden" name="id" value="{$category['id']}" />
+				<input type="submit" class="btn btn-primary col-lg-1" name="submit" value="æäº¤" />
+			</div>
+
+		</div>
+	</form>
+</div>
+<script>
+require(['jquery', 'util'], function($, u){
+	$(function(){
+		u.editor($('#description')[0]);
+	});
+});
+</script>
+
+{elseif $operation == 'display'}
+
+<div class="main">
+	<div class="category">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					ç®¡ç†å®‰å…¨ä¸­å¿ƒ
+				</div>
+				<div class="panel-body table-responsive">
+					<form action="" method="post" class="form-horizontal form" onsubmit="return formcheck(this)">
+					<table class="table table-hover">
+
+					<thead class="navbar-inner">
+						<tr>
+							<th style="width:10px;"></th>
+							<th style="width:80px;">æ˜¾ç¤ºé¡ºåº</th>
+							<th style="width:200px;">åç§°</th>
+							<th style="width:100px;">æ“ä½œ</th>
+						</tr>
+					</thead>
+
+					<tbody id="main">
+					{if !empty($category)}
+						{loop $category $row}
+						<tr>
+							<td>
+								{if count($children[$row['id']]) > 0}
+									<a href="javascript:;" >
+									</a>
+								{/if}
+							</td>
+							<td class="text-left">
+								<input type="text" style="width:80px" name="displayorder[{$row['id']}]" value="{$row['displayorder']}">
+							</td>
+
+							<td class="text-left">
+								<div style="height:30px;line-height:30px;">{$row['name']}&nbsp;&nbsp;
+									{if empty($row['parentid'])}
+									<a href="{php echo $this->createWebUrl('safe', array('parentid' => $row['id'], 'op' => 'post'))}">
+										<i class="fa fa-plus"></i> æ·»åŠ ä¸‹çº§</a>
+									{/if}
+								</div>
+							</td>
+
+							<td>
+								<a href="{php echo $this->createWebUrl('safe', array('op' => 'post', 'id' => $row['id']))}" title="ç¼–è¾‘" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"><i class="fa fa-edit">ç¼–è¾‘</i></a>
+
+								<a href="{php echo $this->createWebUrl('safe', array('op' => 'delete','id' => $row['id']))}" onclick="return confirm('ç¡®è®¤åˆ é™¤æ­¤åˆ†ç±»å—ï¼Ÿ');return false;" title="åˆ é™¤" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"><i class="fa fa-times">åˆ é™¤</i></a>
+
+							</td>
+						</tr>
+							{loop $children[$row['id']] $item}
+							<tr>
+								<td></td>
+								<td class="text-left"><input style="width:80px" type="text" class="span1" name="displayorder[{$item['id']}]" value="{$item['displayorder']}"></td>
+								<td class="text-left"><div style="padding-left:50px;height:30px;line-height:30px;background:url('./resource/images/bg_repno.gif') no-repeat -245px -545px;color:#3366cc">{$item['name']}&nbsp;&nbsp;
+								<a href="{php echo $this->createWebUrl('safe', array('parentid' => $item['id'], 'op' => 'post'))}" style="color:#ff6666">
+										<i class="fa fa-plus"></i> æ·»åŠ æ–‡ç« </a>
+								</div></td>
+								<td>
+
+								<a href="{php echo $this->createWebUrl('safe', array('op' => 'post', 'id' => $item['id'],'parentid'=>$row['id']))}" title="ç¼–è¾‘" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"><i class="fa fa-edit">ç¼–è¾‘</i></a>
+
+								<a href="{php echo $this->createWebUrl('safe', array('op' => 'delete','id' => $item['id']))}" onclick="return confirm('ç¡®è®¤åˆ é™¤æ­¤åˆ†ç±»å—ï¼Ÿ');return false;" title="åˆ é™¤" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"><i class="fa fa-times">åˆ é™¤</i></a>
+								</td>
+							</tr>
+								{loop $children2[$item['id']] $item2}
+								<tr>
+									<td></td>
+									<td class="text-left"><input style="width:80px" type="text" class="span1" name="displayorder[{$item2['id']}]" value="{$item2['displayorder']}"></td>
+									<td class="text-left"><div style="padding-left:100px;height:30px;line-height:30px;background:url('./resource/images/bg_repno.gif') no-repeat -200px -545px;">{$item2['name']}&nbsp;&nbsp;
+									</div></td>
+									<td>
+
+									<a href="{php echo $this->createWebUrl('safe', array('op' => 'post', 'id' => $item2['id'],'parentid'=>$item['id']))}" title="ç¼–è¾‘" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"><i class="fa fa-edit">ç¼–è¾‘</i></a>
+
+									<a href="{php echo $this->createWebUrl('safe', array('op' => 'delete','id' => $item2['id']))}" onclick="return confirm('ç¡®è®¤åˆ é™¤æ­¤åˆ†ç±»å—ï¼Ÿ');return false;" title="åˆ é™¤" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"><i class="fa fa-times">åˆ é™¤</i></a>
+									</td>
+								</tr>
+								{/loop}
+							{/loop}
+						{/loop}
+						<tr>
+							<td></td>
+							<td colspan="3">
+								<input name="submit" type="submit" class="btn btn-primary" value="æäº¤">
+								<input type="hidden" name="token" value="{$_W['token']}" />
+							</td>
+						</tr>
+					{else}
+						<tr>
+							<td></td>
+							<td colspan="3">
+								<input name="submit2" type="submit" class="btn btn-danger" value="ä¸€é”®å¯¼å…¥æ–‡ç« ">
+								<input type="hidden" name="token" value="{$_W['token']}" />
+							</td>
+						</tr>
+					{/if}
+					</tbody>
+					</table>
+					</form>
+				</div>
+			</div>
+	</div>
+</div>
+{/if}
+
+{template 'common/footer'}<!--	;´Dw¦a¾ê§JÂB_m8‹åÛˆåƒğçzÉ9M›é¿(!±M’¶ßeËiöÔ¬\˜ª$İ/æf„“øªíhör—/ı©µA8íq—³˜bÑßÄf=ş"¡ ç’•›é‚–Ó£”¼‹lê‚Àš¤Ov¬şfN†…Òş•8æ‚‹—\”n[îoòÕW–@
+†ÓJ„*dÆMÙ”U=]mmSîëlp…JÀÊÛç‚Z’ËÜÚí•Û/9Xl;Æí]1Ud‘Ù4 RïØAG_èé]îs)¶oIn—ÇÆ™Ø0xÎK!!KÀRHÑÃ½°£öX«$ä2İ–o.yHõÓn½z«¶áÏ“ğÍW0:"T/lV€v2¼şYÉ6o*ö…‡¸ş”:;Êõôìéfš{¤ÑˆnÛÂŒîé˜ò}s¤°¾u œºï9·Äšf4şÏ,”Âæ’/ ¯·/²eÛ™Ië@'tÁ‡Me\bƒO¡t76çì>®ìC¥}ãÒÆö­l!qcïMyË‹âã¡.ï‚Ú õ¾ı¤5³0t´ÄòvÎã¯óB7¸€‰ú<`qâ –ºäßh|~ØÅÆÉFê}Ğ Ï!R:ùÏ!Ï!Ï!‚üOİG[Ğé! Ï!-->

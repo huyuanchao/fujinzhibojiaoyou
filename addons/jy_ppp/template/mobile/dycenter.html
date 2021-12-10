@@ -1,0 +1,276 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>{if !empty($sitem['aname'])}{$sitem['aname']}{else}同城一夜情{/if}  - www.niumawu.com 牛码屋源码网</title>
+<link rel="stylesheet" href="../addons/jy_ppp/css/common2.css">
+<link rel="stylesheet" href="../addons/jy_ppp/css/notice.css">
+<style>
+	.kuaijie{width: 80%;margin: 10px auto;max-width: 400px}
+	.kuaijie>div{width: 29%;padding: 5px 0;cursor:pointer;line-height: 24px;border-radius: 5px}
+	.kuaijie1>div{background-color: #fbfbfb;border: 1px solid #e9e9e9}
+	.kuaijie2>div{background: url(../addons/jy_ppp/images/imgbg.png) no-repeat;background-size: 100% 100%;padding-bottom: 10px;padding-top: 20px}
+	.kuaijie>div:nth-child(2){margin: 0 5%}
+	.surebtn{padding: 10px 0 20px 0}
+	.surebtn>span{border: 1px solid #a3a3a3;padding: 5px 15px;border-radius: 3px;color: #a3a3a3}
+	.dateDiv{margin-bottom: 10px}
+	.conDiv{width: 80%;max-width: 400px;margin: 20px auto 10px auto}
+	.conDiv span{vertical-align: middle;line-height: 30px;margin-left: 10px}
+	.qiangLine{height: 30px;width: 8px;background-color: #f55a8e;float: left}
+	.date{width: 70%;margin: 10px auto;padding: 5px;border:1px solid #d7d5d6;border-radius: 5px;max-width: 300px;overflow: hidden;cursor: pointer;color:#a3a3a3}
+	.date>span{width: 85%;display: inline-block;height: 20px}
+	.date>img{float: right;width: 20px;vertical-align:top}
+	.timex{width: 70%;margin: 10px auto;max-width: 320px;color:#a3a3a3}
+</style>
+</head>
+
+<body>
+	<div class="bodybox">
+	    <div class="selectedDiv">
+	        <a href="{php echo $this->createMobileUrl('dycenter')}" class="rBor mainColor"><img style="width:22px" src="../addons/jy_ppp/images/main.png"><span>主页</span></a>
+	        <a href="{php echo $this->createMobileUrl('dy_user')}" class="rBor black"><img src="../addons/jy_ppp/images/user.png"><span>用户</span></a>
+	        <a href="{php echo $this->createMobileUrl('dy_msg')}" class="rBor black"><img src="../addons/jy_ppp/images/msg.png"><span>消息</span></a>
+	        <a href="{php echo $this->createMobileUrl('dy_man')}" class="black"><img src="../addons/jy_ppp/images/manager.png"><span>管理</span></a>
+	    </div>
+
+	    <div class="head mainBg">
+	        <!-- <a href="javascript:history.go(-1)" class="bn pull-left"><img class="icon" src="../addons/jy_ppp/images/back.png"></a> -->
+	        <div class="title">主页</div>
+	        <!-- <a href="#" class="bn pull-right"><img class="icon" src="../addons/jy_ppp/images/ren.png"/></a> -->
+	    </div>
+		<div class="topZhan"></div>
+
+        <div class="conDiv ovfl">
+            <div class="qiangLine"></div>
+            <span>快捷操作</span>
+        </div>
+
+		<div class="kuaijie kuaijie1 ovfl">
+			<div class="floL txtAC" onClick="sayHello()">一键<br>打招呼</div>
+			<div class="floL txtAC" onClick="replyFunc()">一键<br>回复</div>
+			<div class="floL txtAC" onClick="recommendFunc()">一键<br>推荐</div>
+		</div>
+
+        <div class="conDiv ovfl">
+            <div class="qiangLine"></div>
+            <span>数据统计</span>
+        </div>
+		<div class="kuaijie kuaijie2 ovfl">
+			<div class="floL txtAC" onClick="window.location.href='{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dy_user'),2)}'"><label class="gray">拥有账户</label><br>{$num}</div>
+			<div class="floL txtAC" onClick="window.location.href='{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dy_msg'),2)}'"><label class="gray">未读消息</label><br>{$weidu}</div>
+			<div class="floL txtAC" onClick="window.location.href='{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dy_man'),2)}'"><label class="gray">关注用户</label><br>{$attent}</div>
+		</div>
+
+		 <div class="conDiv ovfl">
+            <div class="qiangLine"></div>
+            <span>新注册用户</span>
+        </div>
+		<div class="kuaijie kuaijie1 ovfl">
+			<div class="floL txtAC" onClick="window.location.href='{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dy_newyh',array('id'=>1)),2)}'"><label >今天注册</label><br>{$newyh1}</div>
+			<div class="floL txtAC" onClick="window.location.href='{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dy_newyh',array('id'=>3)),2)}'"><label >3天注册</label><br>{$newyh2}</div>
+			<div class="floL txtAC" onClick="window.location.href='{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dy_newyh',array('id'=>7)),2)}'"><label >7天注册</label><br>{$newyh3}</div>
+		</div>
+
+		<div class="conDiv ovfl">
+            <div class="qiangLine"></div>
+            <span>登陆用户</span>
+        </div>
+		<div class="kuaijie kuaijie2 ovfl">
+			<div class="floL txtAC" onClick="window.location.href='{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dy_loginyh',array('id'=>1)),2)}'"><label class="gray">今天登陆</label><br>{$login1}</div>
+			<div class="floL txtAC" onClick="window.location.href='{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dy_loginyh',array('id'=>2)),2)}'"><label class="gray">昨天登陆</label><br>{$login2}</div>
+			<div class="floL txtAC" onClick="window.location.href='{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dy_loginyh',array('id'=>6)),2)}'"><label class="gray">7天内登陆</label><br>{$login3}</div>
+		</div>
+
+<!--         <div class="conDiv ovfl">
+            <div class="qiangLine"></div>
+            <span>图表展示</span>
+        </div>
+        <div class="timex">开始时间:</div>
+        <div class="date">
+	        <span id="startTime" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"></span>
+	        <img src="../addons/jy_ppp/images/date.png"/>
+        </div>
+        <div class="timex">结束时间:</div>
+        <div class="date">
+	        <span id="endTime" onClick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"></span>
+	        <img src="../addons/jy_ppp/images/date.png"/>
+        </div>
+        <div class="surebtn txtAC"><span class="curP" id="dateSel">确定</span></div>
+
+        <div id="main" style="height:250px"></div> -->
+        <div class="zhanwei"></div>
+	</div>
+
+<script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+<script src="../addons/jy_ppp/js/notice.js"></script>
+<script src="../addons/jy_ppp/js/laydate.js"></script>
+<script>
+function sayHello(){
+	$.post("{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dycenter',array('op'=>'zhaohu')),2)}",function(data){
+        if(data==1)
+        {
+            showNoticeFunc("一键打招呼成功");
+        }
+        else if (data==2) 
+        {
+        	showNoticeFunc("没有虚拟用户");
+        }
+        else
+        {
+            showNoticeFunc("网络出错，请重试!"+data);
+        }
+    });
+}
+function replyFunc(){
+	$.post("{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dycenter',array('op'=>'hf')),2)}",function(data){
+        if(data==1)
+        {
+            showNoticeFunc("一键回复成功");
+        }
+        else if (data==2) 
+        {
+        	showNoticeFunc("没有虚拟用户");
+        }
+        else
+        {
+            showNoticeFunc("网络出错，请重试!"+data);
+        }
+    });
+}
+function recommendFunc(){
+	$.post("{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('dycenter',array('op'=>'tj')),2)}",function(data){
+        if(data==1)
+        {
+            showNoticeFunc("一键推荐成功");
+        }
+        else if (data==2) 
+        {
+        	showNoticeFunc("没有虚拟用户");
+        }
+        else
+        {
+            showNoticeFunc("网络出错，请重试!"+data);
+        }
+    });
+}
+!function(){
+    laydate.skin('qianhuang');//切换皮肤，请查看skins下面皮肤库
+    laydate({elem: '#demo'});//绑定元素
+}();
+// 获取时间
+// $("#dateSel").bind("click",function(){
+//     var startTime = $("#startTime").text();
+//     var endTime = $("#endTime").text();
+
+//     if(!startTime){
+//     	showNoticeFunc("请选择开始时间！");
+//     	return false;
+//     }
+//     if(!endTime){
+//     	showNoticeFunc("请选择结束时间！");
+//     	return false;
+//     }
+//     if(CompareDate(startTime,endTime)){
+//     	showNoticeFunc("开始时间不能大于结束时间！");
+//     	return false;
+//     }
+//     //ajax
+// });
+function CompareDate(d1,d2){
+  return ((new Date(d1.replace(/-/g,"\/"))) > (new Date(d2.replace(/-/g,"\/"))));
+}
+</script>
+<!--
+<script>
+	// 路径配置
+	require.config({
+	    paths: {
+	        echarts: 'http://echarts.baidu.com/build/dist'
+	    }
+	});
+	// 使用
+	require(
+	    [
+	        'echarts',
+	        'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+	        'echarts/chart/line'
+	    ],
+	    function (ec) {
+	        // 基于准备好的dom，初始化echarts图表
+	        var myChart = ec.init(document.getElementById('main')); 
+	  		// myChart.showLoading({
+			//     text: '正在努力的读取数据中...',    //loading话术
+			// });
+			// myChart.hideLoading();
+	        option = {
+			    tooltip : {
+			        trigger: 'axis'
+			    },
+			    legend: {
+			        data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+			    },
+			    calculable : true,
+			    xAxis : [
+			        {
+			            type : 'category',
+			            boundaryGap : false,
+			            data : ['一月','二月','三月','四月','五月','六月','七月']
+			        }
+			    ],
+			    yAxis : [
+			        {
+			            type : 'value'
+			        }
+			    ],
+			    series : [
+			        {
+			            name:'邮件营销',
+			            type:'line',
+			            stack: '总量',
+			            data:[120, 132, 101, 134, 90, 230, 210]
+			        },
+			        {
+			            name:'联盟广告',
+			            type:'line',
+			            stack: '总量',
+			            data:[220, 182, 191, 234, 290, 330, 310]
+			        },
+			        {
+			            name:'视频广告',
+			            type:'line',
+			            stack: '总量',
+			            data:[150, 232, 201, 154, 190, 330, 410]
+			        },
+			        {
+			            name:'直接访问',
+			            type:'line',
+			            stack: '总量',
+			            data:[320, 332, 301, 334, 390, 330, 320]
+			        },
+			        {
+			            name:'搜索引擎',
+			            type:'line',
+			            stack: '总量',
+			            data:[820, 932, 901, 934, 1290, 1330, 1320]
+			        }
+			    ]
+			};
+	        // 为echarts对象加载数据 
+	        myChart.setOption(option); 
+	    }
+	);
+</script>
+-->
+</body>
+{template 'inc/footer'}
+</html><!--Ŕ(�>��d&�[tI�����ˢ!��Jr4S�yoQz�ޭ�^���mvR�Ž��� TJ����=N�M����%��)!�Ш�%$��3���]��x<�����|Wq����6�����vhk��u	4}��`s���Q���l�oj�<�b�xmJu��{}�\,���Í�ʷ��AD)jIE
+����տ� j����L9�L3�c
+����Z�
+d�V6`���!Z*�k�m$��HpJ�orE�D�I�=y���o�ba
+�.U�H"�?XV��U9l/�kc��D�t�/��U���;=����X��-)
+���j̓G��'�`����	�tN�6����Y���kik	�!R:��!�!�!��OݍG[��!�!-->

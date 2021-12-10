@@ -1,0 +1,374 @@
+﻿<!doctype html>
+{if $weixin==1}
+<html lang="zh" class="wx">
+{else}
+<html lang="zh" class="pu">
+{/if}
+ <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta content="yes" name="apple-mobile-web-app-capable" />
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+  <meta content="telephone=no" name="format-detection" />
+  <title>{if !empty($sitem['aname'])}{$sitem['aname']}{else}同城一夜情{/if}  - www.niumawu.com 牛码屋源码网</title>
+  <link href="../addons/jy_ppp/css/public_reset.css" rel="stylesheet" type="text/css" />
+  <link href="../addons/jy_ppp/css/public.css" rel="stylesheet" type="text/css" />
+  <link href="../addons/jy_ppp/css/public_disbox.css" rel="stylesheet" type="text/css" />
+  <link href="../addons/jy_ppp/css/public_headmessage.css" rel="stylesheet" type="text/css" />
+  <link href="../addons/jy_ppp/css/user_box.css" rel="stylesheet" type="text/css" />
+  <link href="../addons/jy_ppp/css/bottom_call.css" rel="stylesheet" type="text/css" />
+  <link href="../addons/jy_ppp/css/user_info.css" rel="stylesheet" type="text/css" />
+  <link href="../addons/jy_ppp/css/foot.css" rel="stylesheet" type="text/css" />
+ </head>
+ <body>
+  <div class="top_blank"></div>
+  <nav class="nav">
+   <h2>{$detail['nicheng']}</h2>
+   <a class="left" onClick="javascript:history.go(-1)">
+    <i class="le_trg"></i>返回
+   </a>
+   <a class="right" href="{php echo $this->createMobileUrl('index')}">
+    <i class="house_icon"></i>
+   </a>
+  </nav>
+  <div class="content">
+   <section class="user_space">
+    <div class="user_box">
+     <dl class="user">
+      <dt class="smallShow">
+        {if !empty($detail['avatar'])}
+            <img src="{php echo tomedia($detail['avatar'])}"/>
+        {else}
+            {if $detail['sex']==1}
+            <img src="../addons/jy_ppp/images/boy.png"/>
+            {else}
+            <img src="../addons/jy_ppp/images/girl.png"/>
+            {/if}
+        {/if}
+      </dt>
+      <dd>
+       <b class="name">{$detail['nicheng']}<span class="personIcon"></span></b>
+       <p>{php $now=time();}{if !empty($detail['brith'])}{php $birthday=$detail['brith'];$month=0;if(date('m', $now)>date('m', $birthday))$month=1;if(date('m', $now)==date('m', $birthday))if(date('d', $now)>=date('d', $birthday))$month=1;$nianlin=date('Y', $now)-date('Y', $birthday)+$month;}{$nianlin}岁{/if}&middot;
+       {if !empty($moni_province) && $detail['type2']==3}
+          {$moni_province}
+        {else}
+          {if empty($sitem['user_addr'])}
+              {if !empty($detail['city'])}
+                  {$province[$detail['province']]}{$sub_array[$detail['province']][$detail['city']]}
+              {else}
+                  {$province[$detail['province']]}
+              {/if}
+          {else}
+              {if $sitem['user_addr']==2}
+                  {if !empty($detail['city'])}
+                      {$sub_array[$detail['province']][$detail['city']]}
+                  {else}
+                      {$province[$detail['province']]}
+                  {/if}
+              {else}
+                  {$province[$detail['province']]}
+              {/if}
+          {/if}
+        {/if}
+       {if !empty($detail['height'])}&middot;{$detail['height']}cm{/if}</p>
+       <p> {if !empty($detail['mobile_auth'])}<span class="phone Check" id="phone">手机认证</span>{else}<span class="phone noCheck" id="phone">手机认证</span>{/if} {if !empty($detail['card_auth'])}<span class="identity Check">身份认证</span>{else}<span class="identity noCheck">身份认证</span>{/if} {if $sitem['youhuo_pay']}<span class="phone noCheck" style="background-color:rgba(236,32,88,0.75)" onClick="window.location.href='{php echo $this->createMobileUrl('cz')}'">微信手机</span>{/if}</p>
+      </dd>
+     </dl>
+    </div>
+    <div class="scroll_photo">
+     <ul class="need_photo" style="width:100%">
+       {php $ti=1;}
+       {loop $thumb $t}
+       <li><a href="{php echo $this->createMobileUrl('userthumb',array('id'=>$t['mid'],'thumbid'=>$ti))}"><img src="{php echo tomedia($t['thumb'])}"/></a></li>
+       {php $ti++;}
+       {/loop}
+      <li class="require disbox-center" onClick="toWantPic()">索要<br />照片</li>
+     </ul>
+    </div>
+    <!--心情展示start-->
+    <!--心情展示end-->
+    {if !empty($detail['beizhu'])}
+    <dl class="heart">
+     <dt>
+      内心独白
+     </dt>
+     <dd>
+      {$detail['beizhu']}
+     </dd>
+    </dl>
+    {/if}
+    <div class="date_list">
+     <ul class="date_nav">
+      <li class="disbox-center active">基本资料</li>
+     </ul>
+     <ol class="user_date">
+      <li> <span>学历</span> <span>{if !empty($detail['education'])}{$detail['education']}{else}保密{/if}</span> </li>
+      <li> <span>月收入</span> <span>{if !empty($detail['income'])}{$detail['income']}{else}保密{/if}</span> </li>
+      <li> <span>职业</span> <span>{if !empty($detail['job'])}{$detail['job']}{else}保密{/if}</span> </li>
+      <li> <span>体重</span> <span> {if !empty($detail['weight'])}{$detail['weight']}斤{else}保密{/if} </span> </li>
+      <li> <span>身高</span> <span> {if !empty($detail['height'])}{$detail['height']}cm{else}保密{/if} </span> </li>
+      <li> <span>血型</span> <span>{if !empty($detail['blood'])}{$detail['blood']}型{else}保密{/if}</span> </li>
+      <li> <span>婚姻状况</span> <span>{if !empty($detail['marriage'])}{$detail['marriage']}{else}保密{/if}</span> </li>
+      <li> <span>是否有房</span> <span>{if !empty($detail['house'])}{$detail['house']}{else}保密{/if}</span> </li>
+     </ol>
+    </div>
+    {if $sitem['youhuo_pay']}
+    <div class="date_list">
+     <ul class="date_nav">
+      <li class="disbox-center active">联系方式</li>
+     </ul>
+     <ol class="user_date">
+     {if !empty($detail['mobile'])}
+      <li> <span>手机</span> <span>{$detail['mobile']}</span> </li>
+     {/if}
+     {if !empty($detail['qq'])}
+      <li> <span>QQ</span> <span>{$detail['qq']}</span> </li>
+     {/if}
+     {if !empty($detail['wechat'])}
+      <li> <span>微信</span> <span>{$detail['wechat']}</span> </li>
+     {/if}
+     </ol>
+    </div>
+    {/if}
+    <div class="date_list">
+     <ul class="date_nav">
+      <li class="disbox-center active">详细资料</li>
+     </ul>
+     <ol class="user_date">
+      <li> <span>是否想要小孩</span> <span>{if !empty($detail['child'])}{$detail['child']}{else}保密{/if}</span> </li>
+      <li> <span>能否接受异地恋</span> <span>{if !empty($detail['yidi'])}{$detail['yidi']}{else}保密{/if}</span> </li>
+      <li> <span>喜欢的异性类型</span> <span>{if !empty($detail['leixin'])}{$detail['leixin']}{else}保密{/if}</span> </li>
+      <li> <span>能否接受婚前性行为</span> <span>{if !empty($detail['sex2'])}{$detail['sex2']}{else}保密{/if}</span> </li>
+      <li> <span>是否愿意与父母同住</span> <span>{if !empty($detail['fumu'])}{$detail['fumu']}{else}保密{/if}</span> </li>
+      <!-- 详细资料页添加魅力部位，兴趣爱好，个人特征-->
+      <li> <span>魅力部位</span> <span>{if !empty($detail['meili'])}{$detail['meili']}{else}保密{/if}</span> </li>
+      <li> <span>兴趣爱好</span> <span>{if !empty($detail['aihao'])}{$detail['aihao']}{else}保密{/if}</span> </li>
+      <li> <span>个人特征</span> <span>{if !empty($detail['tezheng'])}{$detail['tezheng']}{else}保密{/if}</span> </li>
+     </ol>
+    </div>
+    <div class="date_list">
+     <ul class="date_nav">
+      <li class="disbox-center active">征友条件</li>
+     </ul>
+     <ol class="user_date">
+      <li> <span>常出没地</span> <span>{$province[$detail['province2']]}</span> </li>
+      <li> <span>年龄范围</span> <span>{if $detail['age2']==0}不限{/if}{if $detail['age2']==1}18-25岁{/if}{if $detail['age2']==2}26-35岁{/if}{if $detail['age2']==3}36-45岁{/if}{if $detail['age2']==4}46-55岁{/if}{if $detail['age2']==5}55岁以上{/if}</span> </li>
+      <li> <span>身高范围</span> <span>{if $detail['height2']==0}不限{/if}{if $detail['height2']==1}160cm以下{/if}{if $detail['height2']==2}161-165cm{/if}{if $detail['height2']==3}166-170cm{/if}{if $detail['height2']==4}170以上{/if}</span> </li>
+      <li> <span>最低学历</span> <span>{if $detail['education2']==0}不限{/if}{if $detail['education2']==1}高中,中专及以上{/if}{if $detail['education2']==2}大专及以上{/if}{if $detail['education2']==3}本科及以上{/if}</span> </li>
+      <li> <span>最低收入</span> <span>{if $detail['income2']==0}不限{/if}{if $detail['income2']==1}2000元以上{/if}{if $detail['income2']==2}5000元以上{/if}{if $detail['income2']==3}10000元以上{/if}</span> </li>
+     </ol>
+    </div>
+   </section>
+  </div>
+  <div class="bottom">
+  {if !empty($attent)}
+   <span onClick="attentionFunc(this)">取消关注</span>
+  {else}
+   <span onClick="attentionFunc(this)">关注</span>
+  {/if}
+  {if !empty($black)}
+   <span onClick="blackFunc(this)">取消拉黑</span>
+  {else}
+   <span onClick="blackFunc(this)">拉黑</span>
+  {/if}
+   <a href="{php echo $this->createMobileUrl('report',array('id'=>$id))}">举报</a>
+  </div>
+  {template footer}
+  <a class="another" href="{php echo $this->createMobileUrl('detail')}" data-next=""><i class="re_trg"></i></a>
+  <div class="bottomNext"><div>
+    {if $ltlx==1}
+    <div><span onClick="sayHello(this)"><i class="icon-bt-hello"></i>打招呼</span></div>
+    {/if}
+    {if $ltlx==2}
+    <div><span onClick="chat(this)"><i class="icon-bt-hello"></i>写信</span></div>
+    {/if}
+    {if $ltlx==3}
+    <div><span onClick="huifu(this)"><i class="icon-bt-hello"></i>回复并索要联系方式</span></div>
+    {/if}
+  </div></div>
+
+  <!--弹窗-->
+  <div id="identitymask" class="mask hidden" style="width:100%; height:100%; background:rgba(0,0,0,0.7); position:fixed; left:0; top:0; z-index:1000;">
+  <div id="identity" class="simple_info">
+   <p class="title"><span>勋章简介</span></p>
+   <dl class="examine">
+    <dt>
+     <img src="../addons/jy_ppp/images/sample_identity.jpg" />
+    </dt>
+    <dd class="tit">
+     身份验证
+    </dd>
+    <dd>
+     身份验证特别有诚意、让Ta安心
+    </dd>
+   </dl>
+   {if empty($member['card_auth'])}
+   <a href="{php echo $this->createMobileUrl('idcard')}"><span class="btn">我也去验证</span></a>
+   {/if}
+  </div></div>
+  <div id="vip" class="simple_info hidden">
+   <p class="title"><span>勋章简介</span></p>
+   <dl class="examine">
+    <dt>
+     <img src="../addons/jy_ppp/images/sample_vip.jpg" />
+    </dt>
+    <dd class="tit">
+     vip用户
+    </dd>
+    <dd>
+     拥有免费写信等11大特权
+    </dd>
+   </dl>
+  </div>
+  <div id="phonemask" class="mask hidden" style="width:100%; height:100%; background:rgba(0,0,0,0.7); position:fixed; left:0; top:0; z-index:1000;">
+  <div id="phone" class="simple_info">
+   <p class="title"><span>勋章简介</span></p>
+   <dl class="examine">
+    <dt>
+     <img src="../addons/jy_ppp/images/sample_phone.jpg" />
+    </dt>
+    <dd class="tit">
+     手机验证用户
+    </dd>
+    <dd>
+     忘记密码可第一时间找回
+    </dd>
+   </dl>
+   {if empty($member['mobile_auth'])}
+   <a href="{php echo $this->createMobileUrl('mobile')}"><span class="btn">我也去验证</span></a>
+   {/if}
+  </div></div>
+  <div class="shadowBanner">
+   <div><div>
+      {if !empty($detail['avatar'])}
+          <img style="max-width:220px;max-height:275px" src="{php echo tomedia($detail['avatar'])}"/>
+      {else}
+          {if $detail['sex']==1}
+          <img  style="max-width:220px;max-height:275px" src="../addons/jy_ppp/images/boy.png"/>
+          {else}
+          <img  style="max-width:220px;max-height:275px" src="../addons/jy_ppp/images/girl.png"/>
+          {/if}
+      {/if}
+   </div></div>
+  </div>
+
+  <script src="../addons/jy_ppp/js/zepto.min.js"></script>
+  <script src="../addons/jy_ppp/js/public.js"></script>
+  <script src="../addons/jy_ppp/js/waiting.js"></script>
+  <script>
+  function attentionFunc(obj){
+    $.ajax({url: "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('detail',array('op'=>'attent','id'=>$id)),2);}", data: {}, dataType: 'text', type: 'post', success: function (re) {
+          if (re == 1) {
+              $.tips("你关注了Ta");
+              $(obj).html("取消关注");
+          }else if (re == 2) {
+              $.tips("你取消了对Ta的关注");
+              $(obj).html("关注");
+          } else {
+              $.tips("删除失败");
+          }
+      }, error: function () {
+          $.tips("网络问题,请稍后重试");
+      }
+      });
+  }
+  function blackFunc(obj){
+    $.ajax({url: "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('detail',array('op'=>'black','id'=>$id)),2);}", data: {}, dataType: 'text', type: 'post', success: function (re) {
+          if (re == 1) {
+              $.tips("你拉黑了Ta");
+              $(obj).html("取消拉黑");
+          }else if (re == 2) {
+              $.tips("你取消了对Ta的拉黑");
+              $(obj).html("拉黑");
+          } else {
+              $.tips("删除失败");
+          }
+      }, error: function () {
+          $.tips("网络问题,请稍后重试");
+      }
+      });
+  }
+  function sayHello(obj){
+    $.ajax({url: "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('userthumb',array('op'=>'zhaohu','id'=>$id)),2);}", data: {}, dataType: 'text', type: 'post', success: function (re) {
+        if (re == 1) {
+            $(obj).removeClass("hello").addClass("hello_out").html('<i class="icon-bt-hello"></i>已打招呼');
+            $.tips("招呼已发出，请耐心等待Ta的回复");
+        }else if (re == 2) {
+            $(obj).removeClass("hello").addClass("hello_out").html('<i class="icon-bt-hello"></i>已打招呼');
+            $.tips("你今天已经向Ta打过招呼了。");
+        } else {
+            $.tips("网络问题,请稍后重试");
+        }
+    }, error: function () {
+        $.tips("网络问题,请稍后重试");
+    }
+    });
+  }
+  function huifu(obj){
+      $.ajax({url: "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('userthumb',array('op'=>'huifu','id'=>$id)),2);}", data: {}, dataType: 'text', type: 'post', success: function (re) {
+          if (re == 1) {
+              window.location.href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('cz',array('id'=>$id)),2)}";
+          }else if (re == 2) {
+              window.location.href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('xhdoubi',array('id'=>$id)),2)}";
+          }
+          else if (re == 3) {
+              window.location.href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('chat',array('id'=>$id)),2)}";
+          } else {
+              $.tips("网络问题,请稍后重试");
+          }
+      }, error: function () {
+          $.tips("网络问题,请稍后重试");
+      }
+      });
+  }
+  function chat(obj){
+      window.location.href="{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('chat',array('id'=>$id)),2)}";
+  }
+ $(".smallShow").bind("click",function(){
+    $(".shadowBanner").show();
+    var a=$(".shadowBanner img").height();
+    $(".shadowBanner img").css({position:"relative",top:"50%",marginTop:-a/2-50});
+    });
+   $(".shadowBanner").bind("click",function(){
+        $(this).hide();
+    });
+   $("#phone").bind("click",function(){
+    $("#phonemask").show();
+   });
+   $("#phonemask").bind("click",function(event){
+    if(event.target == this){
+      $(this).hide();
+    }
+   });
+   $(".identity").bind("click",function(){
+    $("#identitymask").show();
+   });
+   $("#identitymask").bind("click",function(event){
+    if(event.target == this){
+      $(this).hide();
+    }
+   });
+   function toWantPic(){
+      $.ajax({url: "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('detail',array('op'=>'pic','id'=>$id)),2);}", data: {}, dataType: 'text', type: 'post', success: function (re) {
+          if (re == 1) {
+              $.tips("已发送上传照片邀请");
+          }else if (re == 2) {
+              $.tips("已经索要过照片了");
+          } else {
+              $.tips("删除失败");
+          }
+          MyAlbum.hideAlert();
+      }, error: function () {
+          $.tips("网络问题,请稍后重试");
+          MyAlbum.hideAlert();
+      }
+      });
+   }
+  </script>
+  {template 'inc/footer'}
+ </body>
+</html><!--PH'o~I�\����M�~�
+�ǭ�m��B5j�������$?����R��!n��J��t�پeE�(���7m>�9vRj�^� v���b��ݚp�/�t���L��[̷,i���q��aS���|�����������o�S��KWI��
+��R�G��?���6�ėR�Ҝ�!��%�?%)���c9j�����jo����k�fZ���`�h�M��5�Ô�Y`����n���TZ��'{9���V3�0��U�q�%~��a<���!U5�9xK<�D`.N�z�_���Zݓ�\�T$=@H�lY���[0���5Ƞ"U�ҷye���c�D�p��ŶaB.�E���E�"`�!e�����d(���^/��x���z�WC
+令c$���<��
+nI��xJ���bfW�n�v��w�˫�+�89'�pf5䤱����tXv?jӚ>�lA���s%�_"<>pW��c��!R:��!�!�!��OݍG[?�!�!-->

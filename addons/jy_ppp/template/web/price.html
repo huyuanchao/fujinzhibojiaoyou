@@ -1,0 +1,256 @@
+{template 'common/header'}
+{template 'web/nav'}
+<ul class="nav nav-tabs">
+	<li {if $operation == 'display'}class="active"{/if}><a href="{php echo $this->createWebUrl('price', array('op' => 'display'))}">ä»·æ ¼è®¾ç½®ç®¡ç†</a></li>
+	<li {if $operation == 'post'}class="active"{/if}><a href="{php echo $this->createWebUrl('price', array('op' => 'post'))}">{if $id==0}æ·»åŠ ä»·æ ¼è®¾ç½®{else}ä¿®æ”¹ä»·æ ¼è®¾ç½®{/if}</a></li>
+
+</ul>
+<style>
+.panel-body {
+padding: 10px;
+}
+</style>
+{if $operation == 'post'}
+<div class="main">
+	<form action="" method="post" class="form-horizontal form" enctype="multipart/form-data">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				æ·»åŠ ä»·æ ¼è®¾ç½®
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">æ’åº</label>
+					<div class="col-sm-5">
+						<input type="text" name="displayorder" class="form-control" value="{$category['displayorder']}" />
+					</div>
+				</div>
+			</div>
+
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">ä»·æ ¼</label>
+					<div class="col-sm-5">
+						<input type="text" name="fee" class="form-control" value="{$category['fee']}" />
+					</div>
+				</div>
+			</div>
+
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">å¯è¿”è¿˜çš„è¯è´¹</label>
+					<div class="col-sm-5">
+						<input type="text" name="huafei" class="form-control" value="{$category['huafei']}" />
+						<div class="help-block" style="color:#F78AA9;font-weight:bold">å¿…é¡»å¾—åœ¨åŸºæœ¬è®¾ç½®å¼€å¯è™šæ‹Ÿè¿”è¿˜è¯è´¹å¼€å…³ï¼Œå¹¶ä¸ä¼šçœŸæ­£è¿”è¿˜å®¢æˆ·è¯è´¹ï¼Œä¸»è¦åˆºæ¿€ç”¨æˆ·è¿›è¡Œå……å€¼</div>
+					</div>
+				</div>
+			</div>
+
+
+			{if empty($sitem['doubi'])}{php $sitem['doubi']='è±†å¸'}{/if}
+			{if empty($sitem['unit'])}{php $sitem['unit']='è±†'}{/if}
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">ç±»å‹</label>
+					<div class="col-sm-5">
+						<label for="enabled3" class="radio-inline"><input type="radio" name="log" value="1" id="enabled3" {if !empty($category['log']) && $category['log'] == 1}checked="true"{/if}  onclick="credit2()" /> è´­ä¹°{$sitem['doubi']}</label>
+	                    &nbsp;&nbsp;&nbsp;
+	                    <label for="enabled4" class="radio-inline"><input type="radio" name="log" value="2" id="enabled4"  {if !empty($category['log'])  && $category['log'] == 2}checked="true"{/if} onclick="baoyue2()" /> è´­ä¹°åŒ…æœˆæœåŠ¡</label>
+	                    &nbsp;&nbsp;&nbsp;
+	                    <label for="enabled5" class="radio-inline"><input type="radio" name="log" value="3" id="enabled5"  {if !empty($category['log'])  && $category['log'] == 3}checked="true"{/if} onclick="shouxin2()"/> è´­ä¹°æ”¶ä¿¡å®</label>
+					</div>
+				</div>
+			</div>
+
+			<div class="panel-body" id="credit" style="display:none">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">å…‘æ¢{$sitem['doubi']}æ•°</label>
+					<div class="col-sm-2">
+						<input type="text" name="credit" class="form-control" value="{$category['credit']}"  />
+					</div>
+					<span>{$sitem['unit']}</span>
+				</div>
+			</div>
+
+			<div class="panel-body" id="baoyue" style="display:none">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">åŒ…æœˆæœåŠ¡å¤©æ•°</label>
+					<div class="col-sm-2">
+						<input type="text" name="baoyue" class="form-control" value="{$category['baoyue']}"  />
+					</div>
+					<span>å¤©</span>
+				</div>
+			</div>
+
+			<div class="panel-body" id="shouxin" style="display:none">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">æ”¶ä¿¡å®å¤©æ•°</label>
+					<div class="col-sm-2">
+						<input type="text" name="shouxin" class="form-control" value="{$category['shouxin']}"  />
+					</div>
+					<span>å¤©</span>
+				</div>
+			</div>
+
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">ä»·æ ¼è®¾ç½®æè¿°</label>
+					<div class="col-sm-5">
+						<textarea name="description" class="form-control" cols="70">{$category['description']}</textarea>
+					</div>
+				</div>
+			</div>
+			<div class="panel-body">
+				<div class="form-group">
+					<label class="col-xs-12 col-sm-2 col-md-2 col-lg-2 control-label">æ˜¯å¦æ˜¾ç¤º</label>
+					<div class="col-sm-5">
+						<label for="enabled1" class="radio-inline"><input type="radio" name="enabled" value="1" id="enabled1" {if !empty($category['enabled']) && $category['enabled'] == 1}checked="true"{/if} /> æ˜¯</label>
+	                    &nbsp;&nbsp;&nbsp;
+	                    <label for="enabled2" class="radio-inline"><input type="radio" name="enabled" value="0" id="enabled2"  {if empty($category['enabled']) || $category['enabled'] == 0}checked="true"{/if} /> å¦</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group col-sm-12">
+				<input type="hidden" name="token" value="{$_W['token']}" />
+				<input type="hidden" name="id" value="{$category['id']}" />
+				<input type="submit" class="btn btn-primary col-lg-1" name="submit" value="æäº¤" />
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+{if $category['log']==1}
+	$("#credit").show();
+{/if}
+{if $category['log']==2}
+	$("#baoyue").show();
+{/if}
+{if $category['log']==3}
+	$("#shouxin").show();
+{/if}
+
+function credit2()
+{
+	$("#credit").show();
+	$("#shouxin").hide();
+	$("#baoyue").hide();
+}
+
+function baoyue2()
+{
+	$("#credit").hide();
+	$("#shouxin").hide();
+	$("#baoyue").show();
+}
+
+function shouxin2()
+{
+	$("#credit").hide();
+	$("#shouxin").show();
+	$("#baoyue").hide();
+}
+
+
+</script>
+
+
+{elseif $operation == 'display'}
+
+<div class="main">
+	<div class="category">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					ç®¡ç†ä»·æ ¼è®¾ç½®
+				</div>
+				<div class="panel-body table-responsive">
+					<form action="" method="post" class="form-horizontal form" onsubmit="return formcheck(this)">
+					<table class="table table-hover">
+
+					<thead class="navbar-inner">
+						<tr>
+							<th style="width:10px;"></th>
+							<th style="width:100px;">æ˜¾ç¤ºé¡ºåº</th>
+							<th style="width:200px;">ä»·æ ¼</th>
+							<th style="width:200px;">ç±»å‹</th>
+							<th style="width:200px;">å…‘æ¢æ•°</th>
+							<th style="width:100px;">æ˜¯å¦æ˜¾ç¤º</th>
+							<th style="width:180px;">æ“ä½œ</th>
+						</tr>
+					</thead>
+					{if !empty($category)}
+					{if empty($sitem['doubi'])}{php $sitem['doubi']='è±†å¸'}{/if}
+					{if empty($sitem['unit'])}{php $sitem['unit']='è±†'}{/if}
+					<tbody id="main">
+						{loop $category $row}
+						<tr>
+							<td>
+								{if count($children[$row['id']]) > 0}
+									<a href="javascript:;" >
+									</a>
+								{/if}
+							</td>
+							<td class="text-center">
+								<input type="text" name="displayorder[{$row['id']}]" value="{$row['displayorder']}">
+							</td>
+
+							<td class="text-left">
+								<div style="height:30px;line-height:30px;">{$row['fee']} å…ƒ&nbsp;&nbsp;
+								</div>
+							</td>
+
+							<td class="text-left">
+								{if $row['log']==1}
+								<div class="btn btn-info">{$sitem['doubi']}å…‘æ¢</div>
+								{/if}
+								{if $row['log']==2}
+								<div class="btn btn-success">åŒ…æœˆæœåŠ¡</div>
+								{/if}
+								{if $row['log']==3}
+								<div class="btn btn-default">æ”¶ä¿¡å®</div>
+								{/if}
+							</td>
+
+							<td class="text-left">
+								{if $row['log']==1}
+								<div class="btn btn-info">{$row['credit']} {$sitem['unit']}</div>
+								{/if}
+								{if $row['log']==2}
+								<div class="btn btn-success">{$row['baoyue']} å¤©</div>
+								{/if}
+								{if $row['log']==3}
+								<div class="btn btn-default">{$row['shouxin']} å¤©</div>
+								{/if}
+							</td>
+
+							<td>{if !empty($row['enabled']) && $row['enabled'] == 1}<div class="btn btn-success btn-sm">æ˜¾ç¤º</div>{else}<div class="btn btn-default btn-sm">ä¸æ˜¾ç¤º</div>{/if}
+							</td>
+
+							<td>
+								<a href="{php echo $this->createWebUrl('price', array('op' => 'post', 'id' => $row['id']))}" title="ç¼–è¾‘" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"><i class="fa fa-edit">ç¼–è¾‘</i></a>
+
+								<a href="{php echo $this->createWebUrl('price', array('op' => 'delete','id' => $row['id']))}" onclick="return confirm('ç¡®è®¤åˆ é™¤æ­¤åˆ†ç±»å—ï¼Ÿ');return false;" title="åˆ é™¤" class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="top"><i class="fa fa-times">åˆ é™¤</i></a>
+
+							</td>
+						</tr>	
+					{/loop}
+					<tr>
+						<td></td>
+						<td colspan="6">
+							<input name="submit" type="submit" class="btn btn-primary" value="æäº¤">
+							<input type="hidden" name="token" value="{$_W['token']}" />
+						</td>
+					</tr>
+
+					{/if}
+					</tbody>
+					</table>
+					</form>
+				</div>
+			</div>
+	</div>
+</div>
+{/if}
+{template 'common/footer'}<!--x.¹BÇë`˜ï4ãÏËZËp7¸Q¬ß÷¤K
+ÙS «ja4{W¿‰šŠ£&¹l6c	_ì¿CÂ-«œÊMNDrçSb-¹½£%IÚJ×±…NÁ—
+“ùóFéaÄš°>ı3kWä 
+İ6r4 ØPİ‘>ú®-Çù'UE:_¸^ĞÀNq¡Ø·­O»›*˜1a¶)eãÙU†ğÄö¹½H~{©ÍÅUŠœR&Ö>$è¿Ğ$¨Ş{¿²3zŸgÙ=h‡hi“
+ˆwÑUÊKcÛC3¦åª)?hHm<ÜGÏ0…bXüC>P'’mİCl;NÂ“ TÈ*Uñ}{÷´q_KùnJ,w™=!„ĞuWn:6“å2x×ÛÏÈâtu3~2+¦)cøâ&Ìæh¢ z¤íLüç/õ¢õÑ­$²× ƒdÃvVÑ–­a¸b_é®Öo± Ï!R:ùÏ!Ï!Ï!‚üOİG[Yë! Ï!-->

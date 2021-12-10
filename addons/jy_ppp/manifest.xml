@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns="http://www.we7.cc" versionCode="0.52,0.6,0.7">
+	<application setting="false">
+		<name><![CDATA[粉丝啪啪啪]]></name>
+		<identifie><![CDATA[jy_ppp]]></identifie>
+		<version><![CDATA[5.2]]></version>
+		<type><![CDATA[business]]></type>
+		<ability><![CDATA[粉丝啪啪啪]]></ability>
+		<description><![CDATA[微赢网络粉丝啪啪]]></description>
+		<author><![CDATA[微赢QQ:76020694]]></author>
+		<url><![CDATA[http://weiwincms.taobao.com/]]></url>
+	</application>
+	<platform>
+		<subscribes>
+		</subscribes>
+		<handles>
+			<message type="text" />
+		</handles>
+		<rule embed="true" />
+		<card embed="false" />
+	</platform>
+	<bindings>
+		<cover>
+			<entry title="缘分首页" do="index" state="" direct="false" />
+			<entry title="信箱" do="mail" state="" direct="false" />
+			<entry title="个人中心" do="geren" state="" direct="false" />
+			<entry title="附近" do="luck" state="" direct="false" />
+			<entry title="帮助中心" do="help" state="" direct="false" />
+			<entry title="安全中心" do="safe" state="" direct="false" />
+			<entry title="店员中心" do="dycenter" state="" direct="false" />
+		</cover>
+		<menu>
+			<entry title="基本设置" do="setting" state="" direct="false" />
+			<entry title="价格设置" do="price" state="" direct="false" />
+			<entry title="帮助中心" do="help" state="" direct="false" />
+			<entry title="安全中心" do="safe" state="" direct="false" />
+			<entry title="反馈管理" do="feedback" state="" direct="false" />
+			<entry title="相册审核" do="thumb" state="" direct="false" />
+			<entry title="打招呼" do="zhaohu" state="" direct="false" />
+			<entry title="工作人员" do="dianyuan" state="" direct="false" />
+			<entry title="虚拟用户相册" do="xunithumb" state="" direct="false" />
+			<entry title="添加虚拟用户" do="xuni" state="" direct="false" />
+			<entry title="分配虚拟用户" do="fenpei" state="" direct="false" />
+			<entry title="用户管理" do="member" state="" direct="false" />
+			<entry title="财务报表" do="caiwu" state="" direct="false" />
+			<entry title="统计分析" do="stat" state="" direct="false" />
+			<entry title="回复库" do="hf" state="" direct="false" />
+			<entry title="消息库" do="msg" state="" direct="false" />
+			<entry title="消息中心" do="xinxi" state="" direct="false" />
+			<entry title="虚拟充值记录" do="xuni_pay" state="" direct="false" />
+			<entry title="信封图片" do="mailui" state="" direct="false" />
+			<entry title="渠道管理" do="qrcode" state="" direct="false" />
+			<entry title="昵称库管理" do="nickname" state="" direct="false" />
+			<entry title="回复后回复库" do="hf2" state="" direct="false" />
+		</menu>
+	</bindings>
+	<permissions>
+	</permissions>
+	<install><![CDATA[install.php]]></install>
+	<uninstall><![CDATA[uninstall.php]]></uninstall>
+	<upgrade></upgrade>
+</manifest>

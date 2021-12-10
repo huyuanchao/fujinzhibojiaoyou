@@ -1,0 +1,488 @@
+{template 'common/header'}
+{template 'web/nav'}
+<ul class="nav nav-tabs">
+    <li class="active"><a href="{php echo $this->createWebUrl('fenpei');}">分配管理</a></li>
+</ul>
+{if $op =="display"}
+	<div class="panel panel-info">
+	<div class="panel-heading">筛选</div>
+
+	<div class="panel-body">
+
+		<form action="./index.php" method="get" class="form-horizontal" role="form">
+
+			<input type="hidden" name="c" value="site" />
+			<input type="hidden" name="a" value="entry" />
+        	<input type="hidden" name="m" value="jy_ppp" />
+        	<input type="hidden" name="do" value="fenpei" />
+
+
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-2 col-md-2 col-lg-1 control-label">关键字</label>
+				<div class="col-xs-12 col-sm-8 col-lg-9">
+					<input class="form-control" name="keyword" id="" type="text" {if !empty($_GPC['id'])}value="{$list[0]['nicheng']}"{else}value="{$_GPC['keyword']}"{/if} placeholder="用户昵称，手机" >
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-2 col-md-2 col-lg-1 control-label">时间筛选</label>
+				<div class="col-xs-12 col-sm-8 col-lg-9">
+					{php echo tpl_form_field_daterange('time', $time);}
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-2 col-md-2 col-lg-1 control-label">区域筛选</label>
+				<div class="col-xs-3 col-sm-2 col-lg-2" id="live">
+					<select name="province" id="live_province" class="form-control"></select>
+				</div>
+				<div class="col-xs-3 col-sm-2 col-lg-2">
+					<select name="city" id="live_city" class="form-control"></select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-2 col-md-2 col-lg-1 control-label">性别筛选</label>
+				<div class="col-xs-3 col-sm-2 col-lg-2">
+					<select name="sex" class="form-control">
+						<option value="0">请选择性别</option>
+						<option value="1" {if $_GPC['sex']==1}selected{/if}>男</option>
+						<option value="2" {if $_GPC['sex']==2}selected{/if}>女</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-xs-12 col-sm-2 col-md-2 col-lg-1 control-label">状态筛选</label>
+				<div class="col-xs-3 col-sm-2 col-lg-2">
+					<select name="type" class="form-control">
+						<option value="0">请选择状态</option>
+						<option value="1" {if $_GPC['type']==1}selected{/if}>已分配</option>
+						<option value="2" {if $_GPC['type']==2}selected{/if}>未分配</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="form-group">
+			 	<div class=" col-xs-12 col-sm-2 col-lg-2">
+
+					<button class="btn btn-default"><i class="fa fa-search"></i> 搜索</button>
+
+				</div>
+			</div>
+		</form>
+	</div>
+	</div>
+{/if}
+{if $op=='display'}
+	<div class="panel panel-default">
+
+		<div class="panel-heading">用户详细数据  |  总数:{$total}</div>
+
+		<div class="panel-body table-responsive">
+
+		    <form action="" method="post" onsubmit="">
+
+			<table class="table table-hover">
+
+				<thead class="navbar-inner">
+
+					<tr>
+
+						<th style="width:1%;" class="row-first"></td>
+
+						<th style="width:5%;">会员ID</th>
+
+						<th style="width:8%;">会员昵称</th>
+
+						<th style="width:7%;">性别 </th>
+
+						<th style="width:7%;">生日 </th>
+
+						<th style="width:7%;">手机账号 </th>
+
+						<th style="width:8%;">区域</th>
+
+						<th style="width:8%;">所属店员</th>
+
+						<th style="width:10%;">注册时间</th>
+
+						<th style="width:20%;">操作</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody id="main">
+					{php $time = time();}
+
+					{loop $list $row}
+
+					<tr class="selectedTr" >
+
+					    <td><input  style="display:none" type="checkbox" name="ids[]" value="{$row['id']}" data-dyid="{$row['dyid']}" /></td>
+
+					    <td>{$row['id']}</td>
+
+						<td  style="white-space:normal;word-break:break-all">{$row['nicheng']}</td>
+
+						<td>{if $row['sex']==1}男{else}女{/if}</td>
+
+						<td>{php echo date('Y-m-d',$row['brith'])}</td>
+
+						<td  style="white-space:normal;word-break:break-all">{$row['mobile']}</td>
+
+						<td  style="white-space:normal;word-break:break-all">{$province[$row['province']]}</td>
+
+						<td  style="white-space:normal;word-break:break-all">{$row['username']}</td>
+
+						<td  style="white-space:normal;word-break:break-all">{php echo date('Y年n月j日 G:i', $row['createtime']);}</td>
+
+						<td style="white-space:normal;word-break:break-all">
+
+<!-- 						<a href="{php echo $this->CreateWebUrl('xinxi',array('op'=>'member','mid'=>$row['id']))}"><div class="btn btn-info">私信Ta</div></a> -->
+
+						<!-- <a href="{php echo $this->CreateWebUrl('member',array('op'=>'edit','id'=>$row['id']))}"><div class="btn btn-default">编辑信息</div></a> -->
+
+						<a href="{php echo $this->CreateWebUrl('member',array('op'=>'mingxi','id'=>$row['id']))}"><div class="btn btn-success">用户详情</div></a>
+						{if !empty($row['dyid'])}
+						<a href="{php echo $this->CreateWebUrl('dianyuan',array('op'=>'edit','id'=>$row['dyid']))}"><div class="btn btn-info">工作人员</div></a>
+						{/if}
+						<a onclick="return confirm('此操作不可恢复，确认吗？'); return false;" href="{php echo $this->CreateWebUrl('member',array('op'=>'del2','id'=>$row['id']))}"><div class="btn btn-danger">删除</div></a>
+
+
+						</td>
+
+					</tr>
+
+					{/loop}
+
+					<tr>
+						<td colspan="2"></td>
+						<td colspan="2"><div class="btn btn-info" onclick="all2()">全选</div></td>
+						<td colspan="2"><div class="btn btn-primary" onclick="all3()">全不选</div></td>
+						<td colspan="2"><div class="btn btn-danger" onclick="delall()">删除选中的</div></td>
+						<td colspan="2"><div class="btn btn-success" onclick="fenpei()">分配选中的</div></td>
+					</tr>
+
+				</tbody>
+
+			</table>
+			{$pager}
+
+			</form>
+	    </div>
+	    <div id="dianyuan_div" style="width:100%;height:100%;position:fixed;left:0;top:0;background:rgba(0,0,0,.7);display:none"><div style="background:#eee;border-radius:5px;width:50%;height:50%;margin:100px auto;padding:20px"><div style="overflow-y:scroll;height:90%;width:100%">
+	    	<table class="table table-hover">
+
+				<thead class="navbar-inner">
+
+					<tr>
+
+						<th style="width:1%" >编号</th>
+						<th style="width:5%" >编号</th>
+						<th style="width:15%">用户名</th>
+						<th style="width:10%">微信昵称</th>
+						<th style="width:15%">微信头像</th>
+						<th style="width:10%">拥有用户</th>
+						<th style="width:15%">手机</th>
+						<th style="width:25%">操作</th>
+
+					</tr>
+
+				</thead>
+
+				<tbody id="main">
+
+					{loop $dianyuan $item}
+
+					<tr class="selectedTr2" >
+
+					    <td><input  style="display:none" type="checkbox" name="dyids[]" value="{$item['id']}" /></td>
+					    <td>
+							<p>{$item['id']}</p>
+	                	</td>
+	                	<td>
+							<p>{$item['username']}</p>
+	                	</td>
+	                	<td>
+							<p>{$item['nickname']}</p>
+	                	</td>
+	                	<td>
+							<img style="width:70px" src="{$item['avatar']}"/>
+	                	</td>
+	                	<td>
+							<p>{$item['num']}</p>
+						</td>
+						<td>
+							<p>{$item['mobile']}</p>
+						</td>
+						<td>
+								<a href="{php echo $this->createWebUrl('dianyuan', array('op' => 'edit','id'=> $item['id']))}"><div class="btn btn-info">编辑店员</div></a>&nbsp;<a onclick="return confirm('此操作不可恢复，确认吗？'); return false;" href="{php echo $this->createWebUrl('dianyuan', array('op' => 'del','id' => $item['id']))}"><div class="btn btn-danger">删除</div></a>
+						</td>
+
+					</tr>
+
+					{/loop}
+
+				</tbody>
+
+			</table>
+	    </div><div style="text-align:center;margin:10px auto;width:100%"><span onclick="cancelBtn()" class="btn btn-info">取消分配</span><span class="btn btn-primary" style="margin-left:80px" onclick="fenpei2()">确认分配</span></div></div></div>
+
+	</div>
+	<script src="../addons/jy_ppp/js/area_id.js"></script>
+	<script>
+		$("#dianyuan_div").bind("click",function(event){
+			if(event.target == this){
+				$(this).hide();
+			}
+		});
+		function cancelBtn(){
+			$("#dianyuan_div").hide();
+		}
+		function all2()
+		{
+		    for(var i=0;i<$(".selectedTr").length;++i){
+		        $(".selectedTr").eq(i).css("background","#FFCCCC");
+				$("input[name='ids[]']").eq(i).prop("checked", true);
+		    }
+		}
+
+		function all3()
+		{
+		    for(var i=0;i<$(".selectedTr").length;++i){
+		        $(".selectedTr").eq(i).css("background","#fff");
+				$("input[name='ids[]']").eq(i).prop("checked", false);
+		    }
+		}
+
+		function delall()
+		{
+			var str='';
+			var ids=0;
+			var dyids=0;
+		    for(var i=0;i<$(".selectedTr").length;++i){
+		    	if($("input[name='ids[]']").eq(i).prop("checked")){
+			        ids++;
+			        str+=$("input[name='ids[]']").eq(i).val()+',';
+			        if($("input[name='ids[]']").eq(i).data('dyid')!=0)
+			        {
+			        	dyids++;
+			        }
+				}
+		    }
+		    if(ids==0)
+		    {
+		    	alert("您未选中任意的虚拟用户!");
+		    }
+		    else
+		    {
+		    	if(dyids==0)
+		    	{
+		    		var a=confirm("您确定删除选中的"+ids+"个虚拟用户吗？")
+		    	}
+		    	else
+		    	{
+		    		var a=confirm("您确定删除选中的"+ids+"个虚拟用户吗？其中有"+dyids+"个虚拟用户已经被分配过，确定需要将他们删除吗?")
+		    	}
+		    	if(a==true){
+		    		location.href = "{php echo $_W['siteroot'].'web/'.substr($this->createWebUrl('fenpei',array('op'=>'del')),2)}"+"&str="+str;
+		    	}
+		    }
+		}
+
+		function fenpei()
+		{
+			var str='';
+			var ids=0;
+		    for(var i=0;i<$(".selectedTr").length;++i){
+		    	if($("input[name='ids[]']").eq(i).prop("checked")){
+			        ids++;
+			        str+=$("input[name='ids[]']").eq(i).val()+',';
+				}
+		    }
+		    if(ids==0)
+		    {
+		    	alert("您未选中任意的虚拟用户!");
+		    }
+		    else
+		    {
+		    	{if count($dianyuan)==0}
+		    		alert("您仍未添加有效的工作人员，请先去添加工作人员");
+		    		setTimeout(function(){
+			            location.href = "{php echo $_W['siteroot'].'web/'.substr($this->createWebUrl('dianyuan'),2)}";
+			        }, 0);
+		    	{else}
+		    		$("#dianyuan_div").show();
+		    	{/if}
+		    }
+		}
+
+		function fenpei2()
+		{
+			var str='';
+			var ids=0;
+			var dyids=0;
+			var dyid=0;
+		    for(var i=0;i<$(".selectedTr").length;++i){
+		    	if($("input[name='ids[]']").eq(i).prop("checked")){
+			        ids++;
+			        str+=$("input[name='ids[]']").eq(i).val()+',';
+			        if($("input[name='ids[]']").eq(i).data('dyid')!=0)
+			        {
+			        	dyids++;
+			        }
+				}
+		    }
+		    if(ids==0)
+		    {
+		    	alert("您未选中任意的虚拟用户!");
+		    }
+		    else
+		    {
+		    	{if count($dianyuan)==0}
+		    		alert("您仍未添加有效的工作人员，请先去添加工作人员");
+		    		setTimeout(function(){
+			            location.href = "{php echo $_W['siteroot'].'web/'.substr($this->createWebUrl('dianyuan'),2)}";
+			        }, 0);
+		    	{else}
+		    		for(var i=0;i<$(".selectedTr2").length;++i){
+				    	if($("input[name='dyids[]']").eq(i).prop("checked")){
+					        dyid=$("input[name='dyids[]']").eq(i).val();
+						}
+				    }
+				    if(dyid!=0)
+				    {
+				    	if(dyids==0)
+				    	{
+				    		var a=confirm("您确定分配选中的"+ids+"个虚拟用户吗？")
+				    	}
+				    	else
+				    	{
+				    		var a=confirm("您确定分配选中的"+ids+"个虚拟用户吗？其中有"+dyids+"个虚拟用户已经被分配过，确定需要将他们再分配吗?")
+				    	}
+				    	if(a==true){
+				    		location.href = "{php echo $_W['siteroot'].'web/'.substr($this->createWebUrl('fenpei',array('op'=>'fenpei')),2)}"+"&str="+str+"&dyid="+dyid;
+				    	}
+				    }
+				    else
+				    {
+				    	alert("请先选择店员！");
+				    }
+		    	{/if}
+		    }
+		}
+
+		$(function () {
+		//点击提交
+
+			$(".selectedTr2").bind('click', function() {
+				for(var i=0;i<$(".selectedTr2").length;++i){
+			    	$(".selectedTr2").eq(i).css("background","#fff");
+					$("input[name='dyids[]']").eq(i).prop("checked", false);
+			    }
+				var index = $(this).index();
+				if($("input[name='dyids[]']").eq(index).prop("checked")){
+					$(this).css("background","#fff");
+					$("input[name='dyids[]']").eq(index).prop("checked", false);
+				}
+				else{
+					$(this).css("background","#cfc");
+					$("input[name='dyids[]']").eq(index).prop("checked", true);
+				}
+			});
+
+			$(".selectedTr").bind('click', function() {
+				var index = $(this).index();
+				if($("input[name='ids[]']").eq(index).prop("checked")){
+					$(this).css("background","#fff");
+					$("input[name='ids[]']").eq(index).prop("checked", false);
+				}
+				else{
+					$(this).css("background","#FFCCCC");
+					$("input[name='ids[]']").eq(index).prop("checked", true);
+				}
+			});
+
+
+			{if empty($_GPC['province'])}
+				{php $_GPC['province']=11;}
+			{/if}
+		    $("#live_province").empty();
+		    {if empty($_GPC['province'])}
+		        for(var i in area_array){
+		            $("#live_province").append('<option value="'+ i+'">'+ area_array[i]+'</option>');
+		        }
+		    {else}
+		        for(var i in area_array){
+		            if({$_GPC['province']}==i)
+		            {
+		                $("#live_province").append('<option value="'+ i+'" selected>'+ area_array[i]+'</option>');
+		            }
+		            else
+		            {
+		                $("#live_province").append('<option value="'+ i+'">'+ area_array[i]+'</option>');
+		            }
+		        }
+		    {/if}
+		    
+		    $("#live_city").empty();
+		    {if empty($_GPC['city'])}
+		    	var temp2=1;
+		        for(var i in sub_array[{$_GPC['province']}]){
+		        	if(temp2==1)
+		            {
+		                $("#live_city").append('<option value="0">请选择市</option>');
+		            }
+		            $("#live_city").append('<option value="'+ i+'">'+ sub_array[{$_GPC['province']}][i]+'</option>');
+		        }
+		    {else}
+		        for(var i in sub_array[{$_GPC['province']}]){
+		            if({$_GPC['city']}==i)
+		            {
+		                $("#live_city").append('<option value="'+ i+'" selected>'+ sub_array[{$_GPC['province']}][i]+'</option>');
+		            }
+		            else
+		            {
+		                $("#live_city").append('<option value="'+ i+'">'+ sub_array[{$_GPC['province']}][i]+'</option>');
+		            }
+		        }
+		    {/if}
+			$("#live_province").bind("change",function(){
+
+		        var p=$("#live select").eq(0).val();
+		        $("#live_city").empty();
+		        var temp=1;
+		        for(var i in sub_array[p]){
+		            if(temp==1)
+		            {
+		                $("#live_city").append('<option value="0">请选择市</option>');
+		            }
+		            $("#live_city").append('<option value="'+ i+'">'+ sub_array[p][i]+'</option>');
+		        }
+		    });
+		});
+	</script>
+{/if}
+
+<script>
+
+$(function(){
+
+    $(".check_all").click(function(){
+
+       var checked = $(this).get(0).checked;
+
+       $("input[type=checkbox]").attr("checked",checked);
+
+    });
+
+});
+
+</script>
+
+{template 'common/footer'}<!--�TUih���:�[�0Q��z�^����.8i4��;�Z>74gn��r6���2M���'5����yC9E�u�2V�퓈M3E�i��K
+):%�Z�7p}�E����b��t�Xv�:7��[���L�ms�!�P�Qo�4SO'ĭz�D�F/�+ha���(eh����.�8�� ��wtj��0�2���	�(&����#�,����k���!�qI��ϣ؄>���p����Sdjy삚�7�Q+�'!�%1.5��c�(Hn��Q�!L���h���5p���w0�z�G��l�9�Yd�̊���KB��+�GT��z���F�,�"J��֪�S�'����ӳ�jQ��
+�[@��Q�T�d�Lnal���A�]���)IJ7C�CE
+��K_��t��7��\�'p'���p���$; �!R:��!�!�!��OݍG[��! �!-->

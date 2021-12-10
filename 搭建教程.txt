@@ -1,0 +1,5 @@
+/zhibo/config/conn.php  直播数据库  
+后台 http://域名/zhibo/admin    账号admin 密码admin
+
+交友 数据库 /data/config.php
+后台 http://域名/web    账号admin 密码admin
