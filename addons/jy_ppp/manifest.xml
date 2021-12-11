@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns="http://www.we7.cc" versionCode="0.52,0.6,0.7">
 	<application setting="false">
-		<name><![CDATA[粉丝啪啪啪]]></name>
+		<name><![CDATA[婚恋交友用户]]></name>
 		<identifie><![CDATA[jy_ppp]]></identifie>
 		<version><![CDATA[5.2]]></version>
 		<type><![CDATA[business]]></type>
-		<ability><![CDATA[粉丝啪啪啪]]></ability>
-		<description><![CDATA[微赢网络粉丝啪啪]]></description>
+		<ability><![CDATA[婚恋交友用户]]></ability>
+		<description><![CDATA[婚恋交友用户]]></description>
 		<author><![CDATA[微赢QQ:76020694]]></author>
 		<url><![CDATA[http://weiwincms.taobao.com/]]></url>
 	</application>
