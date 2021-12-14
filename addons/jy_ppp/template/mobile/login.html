@@ -50,6 +50,7 @@ $(function () {
         var password=$('input[name="password"]').val();
 
         if(username == ''){
+            $.tip($_W['siteroot']);
             $.tips("请输入账号");
             return ;
         }
