@@ -88,7 +88,7 @@ if(is_file($init)) {
 	require $init;
 }
 
-$actions = array();
+$actions = array();682
 $handle = opendir(IA_ROOT . '/app/source/' . $controller);
 if(!empty($handle)) {
 	while($dir = readdir($handle)) {
