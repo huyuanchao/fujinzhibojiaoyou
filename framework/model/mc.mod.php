@@ -7,7 +7,7 @@
 
 function mc_update($uid, $fields) {
 	global $_W;
-	if (empty($fields)) {】、
+	if (empty($fields)) {
 		return false;
 	}
 		if (is_string($uid)) {
