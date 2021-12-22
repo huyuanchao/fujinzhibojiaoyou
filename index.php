@@ -31,9 +31,9 @@ $IPaddress='';
 
                         echo json_decode($data);
 
-						$ipinfo=json_decode(file_get_contents($url));
+						//$ipinfo=json_decode(file_get_contents($url));
 
-						echo $ipinfo;
+						//echo $ipinfo;
 						echo 'end';
 ?>
 <!doctype html>
