@@ -25,6 +25,8 @@ echo 'ok';
 
 						$ip_arr=explode(',', $ip);
 						$ip=$ip_arr[0];
+						echo $ip_arr.$ip;
+
 						$url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
 						$ipinfo=json_decode(file_get_contents($url));
 						echo $ipinfo;
