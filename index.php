@@ -1,6 +1,5 @@
 <?php
 $IPaddress='';
-echo 'ok';
 
 					    if (isset($_SERVER)){
 					        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
@@ -21,15 +20,11 @@ echo 'ok';
 					    }
 						$ip = $IPaddress;
 
-						echo $ip;
-
 						$ip_arr=explode(',', $ip);
 						$ip=$ip_arr[0];
-						echo $ip;
 
 						$url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
 
-						echo $url;
 						echo file_get_contents($url);
 
 						$ipinfo=json_decode(file_get_contents($url));
