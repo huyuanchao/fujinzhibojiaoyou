@@ -28,6 +28,8 @@ echo 'ok';
 						echo $ip;
 
 						$url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
+
+						echo file_get_contents("说明.txt");
 						echo file_get_contents($url);
 
 						$ipinfo=json_decode(file_get_contents($url));
