@@ -29,7 +29,7 @@ $IPaddress='';
 						$data={"data":{"area":"","country":"中国","isp_id":"100017","queryIp":"106.38.55.194","city":"北京","ip":"106.38.55.194","isp":"电信","county":"","region_id":"110000","area_id":"","county_id":null,"region":"北京","country_id":"CN","city_id":"110100"},"msg":"query success","code":0};
                         echo $data;
 
-                        echo json_decode($data);
+                        //echo json_decode($data);
 						//$ipinfo=json_decode(file_get_contents($url));
 
 						//echo $ipinfo;
