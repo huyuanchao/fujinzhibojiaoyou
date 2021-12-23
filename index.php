@@ -34,6 +34,7 @@ $IPaddress='';
 
 						//echo $ipinfo;
 						echo 'end';
+						exit;
 ?>
 <!doctype html>
 <html>
