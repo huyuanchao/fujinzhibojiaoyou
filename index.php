@@ -30,7 +30,6 @@ $IPaddress='';
                         echo $data;
 
                         echo json_decode($data);
-
 						//$ipinfo=json_decode(file_get_contents($url));
 
 						//echo $ipinfo;
