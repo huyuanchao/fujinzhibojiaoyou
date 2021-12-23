@@ -1,5 +1,6 @@
 <?php
 $IPaddress='';
+$ak='464fdb819f3b0df96802ae400d5c3bf8';
 
 					    if (isset($_SERVER)){
 					        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
@@ -24,23 +25,10 @@ $IPaddress='';
 						$ip=$ip_arr[0];
 
 						//$url="http://ip.taobao.com/service/getIpInfo.php?ip=106.38.55.194";//.$ip;
-						$url="https://apis.map.qq.com/ws/location/v1/ip?ip=111.206.145.41&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77";
+						$url="https://api.map.baidu.com/location/ip?ak=".$ak."&ip=".$ip."&coor=bd09ll";
                         $ipinfo=json_decode(file_get_contents($url));
 
-                        if($ipinfo->code==1)
-                        {echo "fail";}
-
-                        if(empty($ipinfo->data))
-                        {
-                        echo 'coda is '.$ipinfo->code;
-                        }else
-                        {
-                        echo $ipinfo->data->region.$info->data->city;
-                        }
-
-
-
-
+                        echo $ipinfo->address;
 						//echo $ipinfo;
 						//echo 'end';
 						exit;
