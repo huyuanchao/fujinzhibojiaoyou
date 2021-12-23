@@ -24,13 +24,21 @@ $IPaddress='';
 						$ip=$ip_arr[0];
 
 						$url="http://ip.taobao.com/service/getIpInfo.php?ip=106.38.55.194";//.$ip;
+                        $ipinfo=json_decode(file_get_contents($url));
 
-						echo file_get_contents($url);
-						//$data={"data":{"area":"","country":"中国","isp_id":"100017","queryIp":"106.38.55.194","city":"北京","ip":"106.38.55.194","isp":"电信","county":"","region_id":"110000","area_id":"","county_id":null,"region":"北京","country_id":"CN","city_id":"110100"},"msg":"query success","code":0};
-                        //echo $data;
+                        if($ipinfo->code==1)
+                        {echo "fail";}
 
-                        //echo json_decode($data);
-						//$ipinfo=json_decode(file_get_contents($url));
+                        if(empty($ipinfo->data))
+                        {
+                        echo 'coda is '.$ipinfo->code;
+                        }else
+                        {
+                        echo $ipinfo->data->region.$info->data->city;
+                        }
+
+
+
 
 						//echo $ipinfo;
 						//echo 'end';
