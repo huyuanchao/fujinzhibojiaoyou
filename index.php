@@ -23,7 +23,8 @@ $IPaddress='';
 						$ip_arr=explode(',', $ip);
 						$ip=$ip_arr[0];
 
-						$url="http://ip.taobao.com/service/getIpInfo.php?ip=106.38.55.194";//.$ip;
+						//$url="http://ip.taobao.com/service/getIpInfo.php?ip=106.38.55.194";//.$ip;
+						$url="https://apis.map.qq.com/ws/location/v1/ip?ip=111.206.145.41&key=OB4BZ-D4W3U-B7VVO-4PJWW-6TKDJ-WPB77";
                         $ipinfo=json_decode(file_get_contents($url));
 
                         if($ipinfo->code==1)
