@@ -1,6 +1,6 @@
 <?php
 $IPaddress='';
-$ak='464fdb819f3b0df96802ae400d5c3bf8';
+$ak="8UkanKWlTKOyUqHxiWyu9Smi8o3M43Bk";
 
 					    if (isset($_SERVER)){
 					        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
