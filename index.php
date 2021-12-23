@@ -33,7 +33,7 @@ $IPaddress='';
 						//$ipinfo=json_decode(file_get_contents($url));
 
 						//echo $ipinfo;
-						echo 'end';
+						//echo 'end';
 						exit;
 ?>
 <!doctype html>
