@@ -9,8 +9,10 @@ function caculateAKSN($ak, $sk, $url, $querystring_arrays, $method = 'GET')
 }
 
 $IPaddress='';
-$ak="8UkanKWlTKOyUqHxiWyu9Smi8o3M43Bk";
-$sk="AOvWWBcMl5Xk5LHjun4L0Si3qT1XqGyU";
+$baidu_ak="8UkanKWlTKOyUqHxiWyu9Smi8o3M43Bk";
+$baidu_sk="AOvWWBcMl5Xk5LHjun4L0Si3qT1XqGyU";
+$tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
+
 
 					    if (isset($_SERVER)){
 					        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
@@ -35,12 +37,12 @@ $sk="AOvWWBcMl5Xk5LHjun4L0Si3qT1XqGyU";
 						$ip=$ip_arr[0];
 
 						//$url="http://ip.taobao.com/service/getIpInfo.php?ip=106.38.55.194";//.$ip;
-						$url="https://api.map.baidu.com/ip?ak=".$ak."&ip=".$ip."&coor=bd09ll";
-                        echo file_get_contents($url);
+						//$url="https://api.map.baidu.com/ip?ak=".$baidu_ak."&ip=".$ip."&coor=bd09ll";
+						$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
 
                         $ipinfo=json_decode(file_get_contents($url));
 
-                        echo $ipinfo->address;
+                        echo $ipinfo->message;
 						//echo $ipinfo;
 						//echo 'end';
 						exit;
