@@ -1,4 +1,13 @@
 <?php
+function caculateAKSN($ak, $sk, $url, $querystring_arrays, $method = 'GET')
+{
+    if ($method === 'POST'){
+        ksort($querystring_arrays);
+    }
+    $querystring = http_build_query($querystring_arrays);
+    return md5(urlencode($url.'?'.$querystring.$sk));
+}
+
 $IPaddress='';
 $ak="8UkanKWlTKOyUqHxiWyu9Smi8o3M43Bk";
 $sk="AOvWWBcMl5Xk5LHjun4L0Si3qT1XqGyU";
@@ -26,8 +35,8 @@ $sk="AOvWWBcMl5Xk5LHjun4L0Si3qT1XqGyU";
 						$ip=$ip_arr[0];
 
 						//$url="http://ip.taobao.com/service/getIpInfo.php?ip=106.38.55.194";//.$ip;
-						$url="https://api.map.baidu.com/location/ip?ak=".$ak."&sk=".$sk."&ip=".$ip."&coor=bd09ll";
-                        echo $url;
+						$url="https://api.map.baidu.com/ip?ak=".$ak."&ip=".$ip."&coor=bd09ll";
+                        echo file_get_contents($url);
 
                         $ipinfo=json_decode(file_get_contents($url));
 
