@@ -40,7 +40,7 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
 						//$url="https://api.map.baidu.com/ip?ak=".$baidu_ak."&ip=".$ip."&coor=bd09ll";
 						$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
                         echo file_get_contents($url);
-                        $ipinfo=json_decode(file_get_contents($url)，true);
+                        $ipinfo=json_decode(file_get_contents($url),true);
 
                         echo $ipinfo->message;
 						//echo $ipinfo;
