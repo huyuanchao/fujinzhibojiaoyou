@@ -7,6 +7,7 @@ function caculateAKSN($ak, $sk, $url, $querystring_arrays, $method = 'GET')
     $querystring = http_build_query($querystring_arrays);
     return md5(urlencode($url.'?'.$querystring.$sk));
 }
+
 function json_decode($json)
 {
     $comment = false;
@@ -118,13 +119,14 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
 
                         //var_dump(json_decode($json));
 
-                        $ipinfo=json_decode($results,true);
-                        //var_dump($ipinfo);
+                        $ipinfo=json_decode($results);
+                        var_dump($ipinfo);
                         echo $ipinfo["message"];
-                        //echo $ipinfo["result"];
+                        echo $ipinfo["result"];
+                        echo $ipinfo["result"][0]["ip"];
 
-                        //echo $ipinfo["result"]["ad_info"]["nation"];
-                        //echo $ipinfo["result"]["ad_info"]["province"].$ipinfo["result"]["ad_info"]["city"];
+                        echo $ipinfo["result"]["ad_info"]["nation"];
+                        echo $ipinfo["result"]["ad_info"]["province"].$ipinfo["result"]["ad_info"]["city"];
 
                         //var_dump($ipinfo);
                         //echo $results['message'];
