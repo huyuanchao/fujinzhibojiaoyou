@@ -1,5 +1,6 @@
 <?php
 global $_W,$_GPC;
+/*
 $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
 
 function json_decode($json)
@@ -23,7 +24,7 @@ function json_decode($json)
 
     eval($out . ';');
     return $x;
-}
+}*/
 
 
 		if ( 1==1 ) {
