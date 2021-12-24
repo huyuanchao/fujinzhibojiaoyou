@@ -42,9 +42,9 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
                         echo file_get_contents($url);
                         $ipinfo=json_decode(file_get_contents($url));
 
-                        echo $ipinfo->message;
+                        echo $ipinfo;
 						//echo $ipinfo;
-						//echo 'end';
+						echo 'end';
 						exit;
 ?>
 <!doctype html>
