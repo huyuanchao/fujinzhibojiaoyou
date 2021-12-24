@@ -9,26 +9,77 @@ function caculateAKSN($ak, $sk, $url, $querystring_arrays, $method = 'GET')
 }
 function json_decode($json)
 {
-$comment = false;
-$out = '$x=';
+    $comment = false;
+    $out = '$x=';
 
-for ($i=0; $i<strlen($json); $i++)
-{
-if (!$comment)
-{
-if (($json[$i] == '{') || ($json[$i] == '[')) $out .= ' array(';
-else if (($json[$i] == '}') || ($json[$i] == ']')) $out .= ')';
-else if ($json[$i] == ':') $out .= '=>';
-else $out .= $json[$i];
-}
-else $out .= $json[$i];
+    for ($i=0; $i<strlen($json); $i++)
+    {
+        if(!$comment)
+        {
+            if (($json[$i] == '{') || ($json[$i] == '[')) $out .= ' array(';
+            else if (($json[$i] == '}') || ($json[$i] == ']')) $out .= ')';
+            else if ($json[$i] == ':') $out .= '=>';
+            else $out .= $json[$i];
+        }
+        else $out .= $json[$i];
 
-if ($json[$i] == '"' && $json[($i-1)]!="\\") $comment = !$comment;
-}
+        if ($json[$i] == '"' && $json[($i-1)]!="\\") $comment = !$comment;
+    }
 
     eval($out . ';');
-return $x;
+    return $x;
 }
+
+function json_encode($input)
+{
+    // 从 PHP 5.4.0 起, 增加了这个选项.
+    if (defined('JSON_UNESCAPED_UNICODE'))
+    {
+        return json_encode($input, JSON_UNESCAPED_UNICODE);
+    }
+
+    if(is_string($input))
+    {
+        $text = $input;
+        $text = str_replace('\\', '\\\\', $text);
+        $text = str_replace(
+        array("\r", "\n", "\t", "\""),
+        array('\r', '\n', '\t', '\\"'),
+        $text);
+        return '"' . $text . '"';
+    }
+    else if(is_array($input) || is_object($input))
+    {
+        $arr = array();
+        $is_obj = is_object($input) || (array_keys($input) !== range(0, count($input) - 1));
+        foreach ($input as $k => $v)
+        {
+            if($v == null)
+            {
+                 $v = 'null';
+            }
+            if ($is_obj)
+            {
+                $arr[] = self::json_encode($k) . ':' . self::json_encode($v);
+            }else
+            {
+                $arr[] = self::json_encode($v);
+            }
+        }
+
+        if ($is_obj)
+        {
+            return '{' . join(',', $arr) . '}';
+        }else
+        {
+            return '[' . join(',', $arr) . ']';
+         }
+    }else
+    {
+         return $input . '';
+    }
+}
+
 $IPaddress='';
 $baidu_ak="8UkanKWlTKOyUqHxiWyu9Smi8o3M43Bk";
 $baidu_sk="AOvWWBcMl5Xk5LHjun4L0Si3qT1XqGyU";
@@ -68,7 +119,13 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
                         //var_dump(json_decode($json));
 
                         $ipinfo=json_decode($results,true);
-                        echo $ipinfo['message'];
+                        echo $ipinfo["message"];
+                        echo $ipinfo["result"][0]["ip"];
+                        echo $ipinfo["result"][0]["loation"]["lat"];
+                        echo $ipinfo["result"][0]["loation"]["lon"];
+
+                        echo $ipinfo["result"][1]["nation"];
+                        echo $ipinfo["result"][1]["province"].$ipinfo["result"][1]["city"];
 
                         //var_dump($ipinfo);
                         //echo $results['message'];
