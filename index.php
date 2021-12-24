@@ -45,9 +45,10 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
                         {
                              //error handle ,错误处理
                              $ret = json_last_error();
-                             print_r($ret);   //打印为： 4,查错误信息表，可知是语法错误
-
+                             echo "fail";
+                             echo $ret;
                         }else{
+
                              echo $ipinfo;
                         }
 						//echo $ipinfo;
