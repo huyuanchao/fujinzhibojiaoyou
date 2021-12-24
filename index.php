@@ -30,7 +30,7 @@ function json_decode($json)
     eval($out . ';');
     return $x;
 }
-
+/*
 function json_encode($input)
 {
     // 从 PHP 5.4.0 起, 增加了这个选项.
@@ -78,7 +78,7 @@ function json_encode($input)
     }else
     {
          return $input . '';
-    }
+    }*/
 }
 
 $IPaddress='';
