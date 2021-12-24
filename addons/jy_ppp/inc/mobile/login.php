@@ -1,9 +1,9 @@
 <?php
 global $_W,$_GPC;
-/*
+
 $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
 
-function json_decode($json)
+function json_decode_defined($json)
 {
     $comment = false;
     $out = '$x=';
@@ -24,7 +24,7 @@ function json_decode($json)
 
     eval($out . ';');
     return $x;
-}*/
+}
 
 
 		if ( 1==1 ) {
@@ -73,11 +73,6 @@ function json_decode($json)
 		$sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
 		$op=$_GPC['op'];
 		$id=$_GPC['id'];
-
-
-
-
-
 
 
 		//onekey
@@ -183,9 +178,6 @@ if($sitem['address']==1)
 						$city=1101;
 					}
 
-
-					
-
 				pdo_insert('jy_ppp_member', array(
 			        'nicheng' => $nicheng,
 			        'pwd' => '123456',
@@ -244,8 +236,6 @@ if($sitem['address']==1)
 				exit;
 			}
 		}
-
-
 
 		if(!$_SESSION['mid']){
 			if($_COOKIE['mid']){
