@@ -1,4 +1,5 @@
 <?php
+/*
 function caculateAKSN($ak, $sk, $url, $querystring_arrays, $method = 'GET')
 {
     if ($method === 'POST'){
@@ -29,7 +30,7 @@ function json_decode($json)
 
     eval($out . ';');
     return $x;
-}
+}*/
 /*
 function json_encode($input)
 {
@@ -80,7 +81,7 @@ function json_encode($input)
          return $input . '';
     }
 }*/
-
+/*
 $IPaddress='';
 $baidu_ak="8UkanKWlTKOyUqHxiWyu9Smi8o3M43Bk";
 $baidu_sk="AOvWWBcMl5Xk5LHjun4L0Si3qT1XqGyU";
@@ -127,12 +128,7 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
                         echo $ipinfo["result"]["location"]["lat"]."---".$ipinfo["result"]["location"]["lng"];
 
                         echo $ipinfo["result"]["ad_info"]["nation"].$ipinfo["result"]["ad_info"]["province"].$ipinfo["result"]["ad_info"]["city"];
-
-                        //var_dump($ipinfo);
-                        //echo $results['message'];
-						//echo $ipinfo;
-						echo 'end';
-						exit;
+*/
 ?>
 <!doctype html>
 <html>

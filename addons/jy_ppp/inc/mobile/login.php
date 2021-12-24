@@ -1,5 +1,30 @@
 <?php
 global $_W,$_GPC;
+$tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
+
+function json_decode($json)
+{
+    $comment = false;
+    $out = '$x=';
+
+    for ($i=0; $i<strlen($json); $i++)
+    {
+        if(!$comment)
+        {
+            if (($json[$i] == '{') || ($json[$i] == '[')) $out .= ' array(';
+            else if (($json[$i] == '}') || ($json[$i] == ']')) $out .= ')';
+            else if ($json[$i] == ':') $out .= '=>';
+            else $out .= $json[$i];
+        }
+        else $out .= $json[$i];
+
+        if ($json[$i] == '"' && $json[($i-1)]!="\\") $comment = !$comment;
+    }
+
+    eval($out . ';');
+    return $x;
+}
+
 
 		if ( 1==1 ) {
 			$weixin=0;
@@ -119,6 +144,7 @@ if($sitem['address']==1)
 						$ip_arr=explode(',', $ip);
 						$ip=$ip_arr[0];
 						$url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
+						//$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
 						$ipinfo=json_decode(file_get_contents($url));
 						if($ipinfo->code=='1'){
 							$province = $sitem['province'];
