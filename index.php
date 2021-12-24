@@ -78,8 +78,8 @@ function json_encode($input)
     }else
     {
          return $input . '';
-    }*/
-}
+    }
+}*/
 
 $IPaddress='';
 $baidu_ak="8UkanKWlTKOyUqHxiWyu9Smi8o3M43Bk";
