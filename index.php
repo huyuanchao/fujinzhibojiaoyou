@@ -74,7 +74,7 @@ function json_encode($input)
         }else
         {
             return '[' . join(',', $arr) . ']';
-         }
+        }
     }else
     {
          return $input . '';
@@ -117,7 +117,7 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
                         $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
                         echo "json:".$json;
 
-                        var_dump(json_decode($json));
+                        //var_dump(json_decode($json));
 
                         //$ipinfo=json_decode($results);
                         //var_dump($ipinfo);
