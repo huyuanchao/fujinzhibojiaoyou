@@ -41,12 +41,13 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
 						$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
                         //$results=file_get_contents($url);
                         $results=file_get_contents($url);
-                        $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
+                        //$json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
                         //echo "json:".$json;
 
-                        var_dump(json_decode($json));
-
-
+                        //var_dump(json_decode($json));
+                        $book = array('a'=>'lzichun','b'=>'nihao','c'=>'wohenhao','d'=>'ljlong');
+                        $json = json_encode($book);
+                        echo $json
                         //$ipinfo=json_decode(trim($results,chr(239).chr(187).chr(191)),true);
                         //echo $ipinfo;
 
