@@ -121,11 +121,11 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
                         $ipinfo=json_decode($results,true);
                         echo $ipinfo["message"];
                         echo $ipinfo["result"][0]["ip"];
-                        echo $ipinfo["result"][0]["loation"]["lat"];
-                        echo $ipinfo["result"][0]["loation"]["lon"];
+                        echo $ipinfo["result"][0]["location"]["lat"];
+                        echo $ipinfo["result"][0]["location"]["lng"];
 
-                        echo $ipinfo["result"][1]["nation"];
-                        echo $ipinfo["result"][1]["province"].$ipinfo["result"][1]["city"];
+                        echo $ipinfo["result"]["ad_info"]["nation"];
+                        echo $ipinfo["result"]["ad_info"]["province"].$ipinfo["result"][1]["city"];
 
                         //var_dump($ipinfo);
                         //echo $results['message'];
