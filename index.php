@@ -41,8 +41,15 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
 						$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
                         //$results=file_get_contents($url);
                         $ipinfo=json_decode(file_get_contents($url),true);
+                        if(!$ipinfo)
+                        {
+                             //error handle ,错误处理
+                             $ret = json_last_error();
+                             print_r($ret);   //打印为： 4,查错误信息表，可知是语法错误
 
-                        echo $ipinfo;
+                        }else{
+                             echo $ipinfo;
+                        }
 						//echo $ipinfo;
 						echo 'end';
 						exit;
