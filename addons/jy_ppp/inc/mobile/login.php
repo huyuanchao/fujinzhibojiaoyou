@@ -88,7 +88,7 @@ $nicheng_tou=array('快乐的','冷静的','醉熏的','潇洒的','糊涂的','
 
 
 
-$sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
+        $sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
 		if(empty($sitem['kjmsg_jiange']))
 		{
 			$sitem['kjmsg_jiange']=60;
@@ -103,100 +103,137 @@ $sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$we
 		}
 
 
-if($sitem['address']==1)
-					{
-						$province = $sitem['province'];
-						if(empty($province))
-						{
-							$province=11;
-						}
-						$city = $sitem['city'];
-						if(empty($city))
-						{
-							$city = $province."01";
-						}
-					}
-					else
-					{
-						$IPaddress='';
-					    if (isset($_SERVER)){
-					        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
-					            $IPaddress = $_SERVER["HTTP_X_FORWARDED_FOR"];
-					        } else if (isset($_SERVER["HTTP_CLIENT_IP"])) {
-					            $IPaddress = $_SERVER["HTTP_CLIENT_IP"];
-					        } else {
-					            $IPaddress = $_SERVER["REMOTE_ADDR"];
-					        }
-					    } else {
-					        if (getenv("HTTP_X_FORWARDED_FOR")){
-					            $IPaddress = getenv("HTTP_X_FORWARDED_FOR");
-					        } else if (getenv("HTTP_CLIENT_IP")) {
-					            $IPaddress = getenv("HTTP_CLIENT_IP");
-					        } else {
-					            $IPaddress = getenv("REMOTE_ADDR");
-					        }
-					    }
-						$ip = $IPaddress;
-						$ip_arr=explode(',', $ip);
-						$ip=$ip_arr[0];
-						$url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
-						//$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
-						$ipinfo=json_decode(file_get_contents($url));
-						if($ipinfo->code=='1'){
-							$province = $sitem['province'];
-							if(empty($province))
-							{
-								$province=11;
-							}
-							$city = $sitem['city'];
-							if(empty($city))
-							{
-								$city = $province."01";
-							}
-						}
-						else
-						{
-							if(empty($sitem['dw_style']))
-							{
-								$_SESSION['moni_city'] = $ipinfo->data->city;
-								$_SESSION['moni_province'] = $ipinfo->data->region;
-								$_SESSION['address']=1;
-								$_SESSION['address_time']=time()+3600*4;
-							}
-							$city = $ipinfo->data->city_id;
-							$province = substr($city, 0,2);
-							$city = substr($city, 0,4);
-						}
-					}
+//         if($sitem['address']==1)
+// 		{
+// 			$province = $sitem['province'];
+// 			if(empty($province))
+// 		    {
+// 				$province=11;
+// 			}
+// 			$city = $sitem['city'];
+// 		    if(empty($city))
+// 			{
+// 				$city = $province."01";
+// 			}
+// 		}
+        if(NULL!=$sitem['address_name']&&(!empty($sitem['address_name']))
+        {
+            $province=$sitem['province_name'];
+            $city = $sitem['city_name'];
+        }
+		else
+		{
+		    $IPaddress='';
+			if(isset($_SERVER))
+			{
+				 if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+				 {
+					   $IPaddress = $_SERVER["HTTP_X_FORWARDED_FOR"];
+			     }
+			     else if(isset($_SERVER["HTTP_CLIENT_IP"]))
+			     {
+					   $IPaddress = $_SERVER["HTTP_CLIENT_IP"];
+			     }else
+			     {
+					   $IPaddress = $_SERVER["REMOTE_ADDR"];
+			     }
+			}else
+			{
+			     if (getenv("HTTP_X_FORWARDED_FOR"))
+			     {
+					  $IPaddress = getenv("HTTP_X_FORWARDED_FOR");
+			     }
+			     else if(getenv("HTTP_CLIENT_IP"))
+			     {
+					  $IPaddress = getenv("HTTP_CLIENT_IP");
+				 }else
+				 {
+					   $IPaddress = getenv("REMOTE_ADDR");
+				 }
+			}
+			$ip = $IPaddress;
+			$ip_arr=explode(',', $ip);
+			$ip=$ip_arr[0];
+			//$url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
+			//$ipinfo=json_decode(file_get_contents($url));
+			$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
+			$ipinfo=json_decode_defined(file_get_contents($url));
 
-					if(empty($province))
-					{
-						$province=11;
-					}
-					if(empty($city))
-					{
-						$city=1101;
-					}
+			if($ipinfo["status"]!=0)
+			{
+			    $province=$sitem['province_name'];
+                $city = $sitem['city_name'];
+			}else
+			{
+			    if(empty($sitem['dw_style']))
+				{
+					$_SESSION['moni_city'] = $ipinfo["ad_info"]["city"];
+					$_SESSION['moni_province'] =$ipinfo["ad_info"]["province"];
+					$_SESSION['address']=1;
+					$_SESSION['address_time']=time()+3600*4;
+				}
+				$city = $ipinfo["ad_info"]["city"];
+				$province =$ipinfo["ad_info"]["province"];
+			}
 
-				pdo_insert('jy_ppp_member', array(
-			        'nicheng' => $nicheng,
-			        'pwd' => '123456',
-			        'weid' => $weid,
-			        'status' => 1,
-			        'sex' => 1,
-			        'brith'=>662659200,
-			        	'province'=>$province,
-							'city'=>$city,
-			    ));
-			    $mid = pdo_insertid();
-			    pdo_update('jy_ppp_member',array('mobile'=>"10000000".$mid),array('id'=>$mid));
+            /*
+			if($ipinfo->code=='1'){
+				$province = $sitem['province'];
+				if(empty($province))
+				{
+					$province=11;
+				}
+				$city = $sitem['city'];
+				if(empty($city))
+				{
+					$city = $province."01";
+				}
+			}
+			else
+			{
+				if(empty($sitem['dw_style']))
+				{
+					$_SESSION['moni_city'] = $ipinfo->data->city;
+					$_SESSION['moni_province'] = $ipinfo->data->region;
+					$_SESSION['address']=1;
+					$_SESSION['address_time']=time()+3600*4;
+				}
+				$city = $ipinfo->data->city_id;
+				$province = substr($city, 0,2);
+				$city = substr($city, 0,4);
+			}*/
+		}
 
-			    $_SESSION['mid']=$mid;
-			    setcookie('mid',$mid,time()+3600*24*30);
+// 		if(empty($province))
+// 		{
+// 			$province=11;
+// 		}
+// 		if(empty($city))
+// 		{
+// 			$city=1101;
+// 		}
+        if(empty($province))
+		{
+			$province="无省份信息";
+		}
+		if(empty($city))
+		{
+			$city="无城市信息";
+		}
 
-			    // print_r($_SESSION);die;
-				echo 1;
-				exit;				
+		pdo_insert('jy_ppp_member',array('nicheng' => $nicheng,'pwd' => '123456','weid' => $weid,'status' => 1,
+		'sex' => 1,'brith'=>662659200,'province'=>$province,'city'=>$city,));
+
+		$mid = pdo_insertid();
+
+		pdo_update('jy_ppp_member',array('mobile'=>"10000000".$mid),array('id'=>$mid));
+
+		$_SESSION['mid']=$mid;
+		setcookie('mid',$mid,time()+3600*24*30);
+
+		// print_r($_SESSION);die;
+		echo 1;
+		exit;
 		}
 
 		if($op=='add')

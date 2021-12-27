@@ -143,9 +143,8 @@ $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
 </head>
 <style type="text/css">
 
-	.speed_2015114{ background:url(addons/jy_ppp/images/1592.jpg) center top no-repeat; background-size:100%;}
-
-
+	//.speed_2015114{ background:url(addons/jy_ppp/images/1592.jpg) center top no-repeat; background-size:100%;}
+	.speed_2015114{ background:addons/jy_ppp/images/1952_new.jpg center top no-repeat; background-size:100%;}
 </style>
 <body class="speed_2015114_body">
 <div class="speed_2015114">
