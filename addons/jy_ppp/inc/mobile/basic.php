@@ -15,7 +15,6 @@ global $_W,$_GPC;
 			if(!empty($mid))
 			{
 				$member=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_member')." WHERE weid=".$weid." AND id=".$mid." AND status=1");
-				include $this->template('basic');
 			}
 		}
 		else
@@ -147,6 +146,8 @@ global $_W,$_GPC;
 			$basic=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_basic')." WHERE weid=".$weid." AND mid=".$mid);
 
 			$op=$_GPC['op'];
+
+			echo 'op'.$op;
 			if($op=='add')
 			{
 				$nicheng=$_GPC['nicheng'];
@@ -232,7 +233,9 @@ global $_W,$_GPC;
 				$month=date('m',$member['brith']);
 				$day=date('d',$member['brith']);
 
+                echo 'month'.$month;
 				include $this->template('basic');
+
 			}
 
 		}
