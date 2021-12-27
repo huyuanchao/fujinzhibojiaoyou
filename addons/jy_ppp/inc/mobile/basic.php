@@ -3,8 +3,6 @@ global $_W,$_GPC;
 
 	$xuniid=intval($_GPC['xuniid']);
 
-	echo 'xuniid'.$_GPC['xuniid'];
-
 	if(empty($xuniid))
 	{
 		if ( 1==1 ) {
@@ -17,8 +15,8 @@ global $_W,$_GPC;
 			if(!empty($mid))
 			{
 				$member=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_member')." WHERE weid=".$weid." AND id=".$mid." AND status=1");
-				echo "member";
-				var_dump($member);
+				echo $member;
+				exit;
 			}
 		}
 		else
@@ -137,8 +135,6 @@ global $_W,$_GPC;
 	}
 
 	$sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
-	echo 'sitem';
-	var_dump($sitem);
 
 	if(empty($member) && $weixin==1 && !empty($sitem['unzhuce']) )
 	{
