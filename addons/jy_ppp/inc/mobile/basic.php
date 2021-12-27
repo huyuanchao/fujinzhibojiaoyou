@@ -136,7 +136,7 @@ global $_W,$_GPC;
 	}
 
 	$sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
-	echo $sitem;
+	echo 'sitem'.$sitem;
 
 	if(empty($member) && $weixin==1 && !empty($sitem['unzhuce']) )
 	{
