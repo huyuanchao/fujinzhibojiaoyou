@@ -143,8 +143,7 @@ global $_W,$_GPC;
 
 	if(!empty($member))
 	{
-			//$basic=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_basic')." WHERE weid=".$weid." AND mid=".$mid);
-            $basic=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_basic')." WHERE weid=1 AND mid=".$mid);
+			$basic=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_basic')." WHERE weid=".$weid." AND mid=".$mid);
 			$op=$_GPC['op'];
 
 			if($op=='add')
