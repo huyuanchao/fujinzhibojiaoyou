@@ -232,9 +232,7 @@ global $_W,$_GPC;
 				$month=date('m',$member['brith']);
 				$day=date('d',$member['brith']);
 
-                echo 'month'.$month;
 				include $this->template('basic');
-
 			}
 
 		}
