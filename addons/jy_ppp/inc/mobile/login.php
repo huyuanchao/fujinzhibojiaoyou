@@ -221,8 +221,9 @@ $nicheng_tou=array('快乐的','冷静的','醉熏的','潇洒的','糊涂的','
 			$city="无城市信息";
 		}
 
+		//pdo_insert('jy_ppp_member',array('nicheng' => $nicheng,'pwd' => '123456','weid' => $weid,'status' => 1,'sex' => 1,'brith'=>662659200,'province'=>$province,'city'=>$city,));
 		pdo_insert('jy_ppp_member',array('nicheng' => $nicheng,'pwd' => '123456','weid' => $weid,'status' => 1,
-		'sex' => 1,'brith'=>662659200,'province'=>$province,'city'=>$city,));
+		'sex' => 1,'brith'=>662659200,'province_name'=>$province,'city_name'=>$city,));
 
 		$mid = pdo_insertid();
 
