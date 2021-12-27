@@ -11,12 +11,11 @@ global $_W,$_GPC;
 			$weid=$_GPC['i'];
 
 			$mid=$_SESSION['mid'];
-			echo 'mid'.$mid;
+
 			if(!empty($mid))
 			{
 				$member=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_member')." WHERE weid=".$weid." AND id=".$mid." AND status=1");
-				echo $member;
-				exit;
+				include $this->template('basic');
 			}
 		}
 		else
