@@ -156,8 +156,9 @@ $nicheng_tou=array('快乐的','冷静的','醉熏的','潇洒的','糊涂的','
 			$ip=$ip_arr[0];
 			$url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
 			$ipinfo=json_decode(file_get_contents($url));
-			//$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
-			//$ipinfo=json_decode_defined(file_get_contents($url));
+			$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
+			$ipinfo_new=json_decode_defined(file_get_contents($url));
+			echo $ipinfo_new;
 
 			//echo $ipinfo;
 			//exit;
@@ -276,6 +277,8 @@ $nicheng_tou=array('快乐的','冷静的','醉熏的','潇洒的','糊涂的','
 				exit;
 			}
 		}
+
+		exit;
 
 		if(!$_SESSION['mid']){
 			if($_COOKIE['mid']){
