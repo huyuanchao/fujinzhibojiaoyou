@@ -103,24 +103,24 @@ $nicheng_tou=array('快乐的','冷静的','醉熏的','潇洒的','糊涂的','
 		}
 
 
-//         if($sitem['address']==1)
-// 		{
-// 			$province = $sitem['province'];
-// 			if(empty($province))
-// 		    {
-// 				$province=11;
-// 			}
-// 			$city = $sitem['city'];
-// 		    if(empty($city))
-// 			{
-// 				$city = $province."01";
-// 			}
-// 		}
-        if(NULL!=$sitem['address_name']&&(!empty($sitem['address_name']))
-        {
-            $province=$sitem['province_name'];
-            $city = $sitem['city_name'];
-        }
+        if($sitem['address']==1)
+		{
+			$province = $sitem['province'];
+			if(empty($province))
+		    {
+				$province=11;
+			}
+			$city = $sitem['city'];
+		    if(empty($city))
+			{
+				$city = $province."01";
+			}
+		}
+//         if(NULL!=$sitem['address_name']&&(!empty($sitem['address_name']))
+//         {
+//             $province=$sitem['province_name'];
+//             $city = $sitem['city_name'];
+//         }
 		else
 		{
 		    $IPaddress='';
@@ -154,14 +154,14 @@ $nicheng_tou=array('快乐的','冷静的','醉熏的','潇洒的','糊涂的','
 			$ip = $IPaddress;
 			$ip_arr=explode(',', $ip);
 			$ip=$ip_arr[0];
-			//$url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
-			//$ipinfo=json_decode(file_get_contents($url));
-			$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
-			$ipinfo=json_decode_defined(file_get_contents($url));
+			$url="http://ip.taobao.com/service/getIpInfo.php?ip=".$ip;
+			$ipinfo=json_decode(file_get_contents($url));
+			//$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
+			//$ipinfo=json_decode_defined(file_get_contents($url));
 
-			echo $ipinfo;
-			exit;
-
+			//echo $ipinfo;
+			//exit;
+            /*
 			if($ipinfo["status"]!=0)
 			{
 			    $province=$sitem['province_name'];
@@ -177,9 +177,9 @@ $nicheng_tou=array('快乐的','冷静的','醉熏的','潇洒的','糊涂的','
 				}
 				$city = $ipinfo["ad_info"]["city"];
 				$province =$ipinfo["ad_info"]["province"];
-			}
+			}*/
 
-            /*
+
 			if($ipinfo->code=='1'){
 				$province = $sitem['province'];
 				if(empty($province))
@@ -204,29 +204,28 @@ $nicheng_tou=array('快乐的','冷静的','醉熏的','潇洒的','糊涂的','
 				$city = $ipinfo->data->city_id;
 				$province = substr($city, 0,2);
 				$city = substr($city, 0,4);
-			}*/
+			}
 		}
 
-// 		if(empty($province))
-// 		{
-// 			$province=11;
-// 		}
-// 		if(empty($city))
-// 		{
-// 			$city=1101;
-// 		}
-        if(empty($province))
+		if(empty($province))
 		{
-			$province="无省份信息";
+			$province=11;
 		}
 		if(empty($city))
 		{
-			$city="无城市信息";
+			$city=1101;
 		}
+//         if(empty($province))
+// 		{
+// 			$province="无省份信息";
+// 		}
+// 		if(empty($city))
+// 		{
+// 			$city="无城市信息";
+// 		}
 
-		//pdo_insert('jy_ppp_member',array('nicheng' => $nicheng,'pwd' => '123456','weid' => $weid,'status' => 1,'sex' => 1,'brith'=>662659200,'province'=>$province,'city'=>$city,));
-		pdo_insert('jy_ppp_member',array('nicheng' => $nicheng,'pwd' => '123456','weid' => $weid,'status' => 1,
-		'sex' => 1,'brith'=>662659200,'province_name'=>$province,'city_name'=>$city,));
+		pdo_insert('jy_ppp_member',array('nicheng' => $nicheng,'pwd' => '123456','weid' => $weid,'status' => 1,'sex' => 1,'brith'=>662659200,'province'=>$province,'city'=>$city,));
+		//pdo_insert('jy_ppp_member',array('nicheng' => $nicheng,'pwd' => '123456','weid' => $weid,'status' => 1,'sex' => 1,'brith'=>662659200,'province_name'=>$province,'city_name'=>$city,));
 
 		$mid = pdo_insertid();
 
