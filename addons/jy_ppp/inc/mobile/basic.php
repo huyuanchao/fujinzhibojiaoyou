@@ -147,7 +147,6 @@ global $_W,$_GPC;
 
 			$op=$_GPC['op'];
 
-			echo 'op'.$op;
 			if($op=='add')
 			{
 				$nicheng=$_GPC['nicheng'];
