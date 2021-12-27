@@ -280,6 +280,8 @@ global $_W,$_GPC;
 
         echo "mid".$_SESSION['mid'];
 
+        exit;
+
 		if(!$_SESSION['mid']){
 			if($_COOKIE['mid'])
 			{
