@@ -2,6 +2,9 @@
 global $_W,$_GPC;
 
 	$xuniid=intval($_GPC['xuniid']);
+
+	echo $_GPC['xuniid'];
+
 	if(empty($xuniid))
 	{
 		if ( 1==1 ) {
@@ -130,6 +133,8 @@ global $_W,$_GPC;
 	}
 
 	$sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
+	echo $sitem;
+
 	if(empty($member) && $weixin==1 && !empty($sitem['unzhuce']) )
 	{
 		$this->unzhuce();
