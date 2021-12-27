@@ -133,7 +133,6 @@ global $_W,$_GPC;
 	}
 
 	$sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
-	echo $sitem["aname"];
 
 	if(empty($member) && $weixin==1 && !empty($sitem['unzhuce']) )
 	{
@@ -142,11 +141,10 @@ global $_W,$_GPC;
 		$mid=$member['id'];
 	}
 
-		if(!empty($member))
-		{
-			$basic=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_basic')." WHERE weid=".$weid." AND mid=".$mid);
-			echo $basic["education"];
-
+	if(!empty($member))
+	{
+			//$basic=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_basic')." WHERE weid=".$weid." AND mid=".$mid);
+            $basic=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_basic')." WHERE weid=1 AND mid=".$mid);
 			$op=$_GPC['op'];
 
 			if($op=='add')
@@ -233,14 +231,13 @@ global $_W,$_GPC;
 				$year=date('Y',$member['brith']);
 				$month=date('m',$member['brith']);
 				$day=date('d',$member['brith']);
-                echo "ok";
+
 				include $this->template('basic');
-				echo "okkk";
 			}
 
-		}
-		else
-		{
+	}
+	else
+	{
 			if($weixin==1)
 			{
 				echo "<script>
@@ -253,4 +250,4 @@ global $_W,$_GPC;
 						window.location.href = '".$this->createMobileUrl('login')."';
 					</script>";
 			}
-		}
+	}
