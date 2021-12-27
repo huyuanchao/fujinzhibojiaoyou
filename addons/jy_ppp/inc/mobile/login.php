@@ -159,6 +159,9 @@ $nicheng_tou=array('快乐的','冷静的','醉熏的','潇洒的','糊涂的','
 			$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
 			$ipinfo=json_decode_defined(file_get_contents($url));
 
+			echo $ipinfo;
+			exit;
+
 			if($ipinfo["status"]!=0)
 			{
 			    $province=$sitem['province_name'];
