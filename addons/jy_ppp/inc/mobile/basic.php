@@ -13,9 +13,12 @@ global $_W,$_GPC;
 			$weid=$_GPC['i'];
 
 			$mid=$_SESSION['mid'];
+			echo 'mid'.$mid;
 			if(!empty($mid))
 			{
 				$member=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_member')." WHERE weid=".$weid." AND id=".$mid." AND status=1");
+				echo "member";
+				var_dump($member);
 			}
 		}
 		else
@@ -66,11 +69,9 @@ global $_W,$_GPC;
 
 			$dyid=$_SESSION['dyid'];
 
-			echo 'dyid'.$dyid;
 			if(!empty($dyid))
 			{
 				$dianyuan=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_dianyuan')." WHERE weid=".$weid." AND id=".$dyid);
-				echo 'dianyuan'.$dianyuan;
 			}
 		}
 		else
@@ -136,7 +137,8 @@ global $_W,$_GPC;
 	}
 
 	$sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
-	echo 'sitem'.$sitem;
+	echo 'sitem';
+	var_dump($sitem);
 
 	if(empty($member) && $weixin==1 && !empty($sitem['unzhuce']) )
 	{
