@@ -3,7 +3,7 @@ global $_W,$_GPC;
 
 	$xuniid=intval($_GPC['xuniid']);
 
-	echo $_GPC['xuniid'];
+	echo 'xuniid'.$_GPC['xuniid'];
 
 	if(empty($xuniid))
 	{
@@ -65,9 +65,12 @@ global $_W,$_GPC;
 			$weid=$_GPC['i'];
 
 			$dyid=$_SESSION['dyid'];
+
+			echo 'dyid'.$dyid;
 			if(!empty($dyid))
 			{
 				$dianyuan=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_dianyuan')." WHERE weid=".$weid." AND id=".$dyid);
+				echo 'dianyuan'.$dianyuan;
 			}
 		}
 		else
