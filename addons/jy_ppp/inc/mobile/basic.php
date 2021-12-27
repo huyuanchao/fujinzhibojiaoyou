@@ -1,7 +1,6 @@
 <?php
 global $_W,$_GPC;
-include $this->template('basic');
-exit;
+
 	$xuniid=intval($_GPC['xuniid']);
 
 	if(empty($xuniid))
@@ -134,6 +133,7 @@ exit;
 	}
 
 	$sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
+	echo $sitem["aname"];
 
 	if(empty($member) && $weixin==1 && !empty($sitem['unzhuce']) )
 	{
@@ -145,6 +145,7 @@ exit;
 		if(!empty($member))
 		{
 			$basic=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_basic')." WHERE weid=".$weid." AND mid=".$mid);
+			echo $basic["education"];
 
 			$op=$_GPC['op'];
 
@@ -232,8 +233,9 @@ exit;
 				$year=date('Y',$member['brith']);
 				$month=date('m',$member['brith']);
 				$day=date('d',$member['brith']);
-
+                echo "ok";
 				include $this->template('basic');
+				echo "okkk";
 			}
 
 		}
