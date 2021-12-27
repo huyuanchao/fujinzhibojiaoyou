@@ -73,7 +73,6 @@ global $_W,$_GPC;
 		$op=$_GPC['op'];
 		$id=$_GPC['id'];
 
-        echo "op.id".$op.$id;
 		//onekey
 		if($op=='onekey')
 		{
@@ -277,10 +276,6 @@ global $_W,$_GPC;
 				exit;
 			}
 		}
-
-        echo "mid".$_SESSION['mid'];
-
-        exit;
 
 		if(!$_SESSION['mid']){
 			if($_COOKIE['mid'])
