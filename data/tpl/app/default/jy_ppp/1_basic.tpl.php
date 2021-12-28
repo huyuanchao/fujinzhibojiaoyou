@@ -91,16 +91,15 @@
             <div class="select">
                 <span class="value">
                 <?php if(empty($basic['height'])){?>
-                    <span class="pink">请选择</span>
-                </span>
+                    <span class="pink">请选择</span></span>
                 <?php}else
                 { echo $basic['height'];}?>cm</span>
                 <i class="bot_trged"></i>
                 <select id="basic_height" class="value_select">
                     <option value="0" style="display:none">请选择</option>
-                    <?php for ($i=140; $i <221 ; $i++) {
-                        ?> <option value="<?php $i;?>" <?php if($basic['height']==$i){?> selected="selected"<?php }?>> <?php $i;?>cm </option><?php
-                    } ?>
+                    <?php for ($i=140; $i <221 ; $i++) {?>
+                    <option value="<?php echo $i;?>" <?php if($basic['height']==$i){?> selected="selected"<?php }?>> <?php echo $i;?>cm </option>
+                    <?php} ?>
 
                 </select>
             </div>
