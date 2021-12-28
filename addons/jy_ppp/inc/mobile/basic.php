@@ -97,6 +97,7 @@ global $_W,$_GPC;
 					$uid=$member_temp['uid'];
 					unset($member_temp);
 				}
+
 				if(empty($uid))
 				{
 					echo "<script>
@@ -110,6 +111,7 @@ global $_W,$_GPC;
 				}
 			}
 		}
+
 		if(empty($dianyuan))
 		{
 			echo "<script>
