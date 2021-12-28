@@ -110,11 +110,11 @@
         <div class="right">
             <div class="select">
                 <span class="value">
-                {if empty($basic['weight'])}
+                <?php if()empty($basic['weight'])){?>
                     <span class="pink">请选择</span></span>
-                {else}
-                    {$basic['weight']}斤</span>
-                {/if}
+                <?php }else{
+                    echo $basic['weight'];?>斤</span>
+                <?php }?>
                 <i class="bot_trged"></i>
                 <select id="basic_weight" class="value_select">
                         <option value="0" style="display:none">请选择</option>
