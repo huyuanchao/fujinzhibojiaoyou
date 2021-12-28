@@ -39,28 +39,28 @@
                 <i class="bot_trged"></i>
                 <select class="value_select">
                     <?php for ($i=1997; $i >1954 ; $i--) {
-                        ?> <option value="<?php $i?>" <?php if($year==$i){?> selected="selected" <?php }?>><?php $i?>年 </option>
+                        ?> <option value="<?php echo $i;?>" <?php if($year==$i){?> selected="selected" <?php }?>><?php echo $i;?>年 </option>
                     <?php
                     } ?>
                 </select>
             </div>
             <div class="select">
-                <span class="value">{$month}月</span>
+                <span class="value"><?php echo $month ?>月</span>
                 <i class="bot_trged"></i>
                 <select class="value_select">
-                    <?php for ($i=1; $i <13 ; $i++) {
+                    <?php for($i=1; $i <13 ; $i++) {
                         ?>
-                        <option value="<?php $i?>" <?php if($month==$i){?> selected="selected" <?php }?>><?php $i?>月 </option>
+                        <option value="<?php echo $i;?>" <?php if($month==$i){?> selected="selected" <?php }?>><?php echo $i;?>月 </option>
                         <?php
                     } ?>
                 </select>
             </div>
             <div class="select">
-                <span class="value">{$day}日</span>
+                <span class="value"><?php echo $day?>日</span>
                 <i class="bot_trged"></i>
                 <select class="value_select">
                     <?php for ($i=1; $i <32 ; $i++) {
-                        ?> <option value="{$i}" {if $day==$i} selected="selected" {/if}>{$i}日 </option><?php
+                        ?> <option value="<?php echo $i;?>" <?php if($day==$i){?> selected="selected" <?php }?>><?php echo $i;?>日 </option><?php
                     } ?>
                 </select>
             </div>
