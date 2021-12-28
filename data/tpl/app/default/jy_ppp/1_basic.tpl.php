@@ -45,7 +45,7 @@
                 </select>
             </div>
             <div class="select">
-                <span class="value"><?php echo $month ?>月</span>
+                <span class="value"><?php echo $month;?>月</span>
                 <i class="bot_trged"></i>
                 <select class="value_select">
                     <?php for($i=1; $i <13 ; $i++) {
@@ -56,7 +56,7 @@
                 </select>
             </div>
             <div class="select">
-                <span class="value"><?php echo $day?>日</span>
+                <span class="value"><?php echo $day;?>日</span>
                 <i class="bot_trged"></i>
                 <select class="value_select">
                     <?php for ($i=1; $i <32 ; $i++) {
