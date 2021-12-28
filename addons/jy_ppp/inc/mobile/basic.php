@@ -235,8 +235,8 @@ global $_W,$_GPC;
 				$month=date('m',$member['brith']);
 				$day=date('d',$member['brith']);
 
-				include $this->template('basic_new');
-				//include $this->template('desc');
+				//include $this->template('basic_new');
+				include $this->template('desc');
 			}
 
 	}
