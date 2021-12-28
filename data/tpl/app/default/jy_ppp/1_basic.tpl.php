@@ -91,7 +91,7 @@
             <div class="select">
                 <span class="value">
                 <?php if(empty($basic['height'])){?>
-                    <span class="pink">请选择</span></span>
+                    <span class="pink">请选择</span>
                 <?php}else
                 { echo $basic['height'];}?>cm</span>
                 <i class="bot_trged"></i>
