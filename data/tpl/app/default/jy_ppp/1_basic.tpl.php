@@ -39,7 +39,7 @@
                 <i class="bot_trged"></i>
                 <select class="value_select">
                     <?php for ($i=1997; $i >1954 ; $i--) {
-                        ?> <option value="<?php echo $i; ?>" <?php if($year==$i){?> selected="selected" <?php }?>><?php $i;?>年 </option>
+                        ?> <option value="<?php $i?>" <?php if($year==$i){?> selected="selected" <?php }?>><?php $i?>年 </option>
                     <?php
                     } ?>
                 </select>
@@ -49,7 +49,9 @@
                 <i class="bot_trged"></i>
                 <select class="value_select">
                     <?php for ($i=1; $i <13 ; $i++) {
-                        ?> <option value="<?php {$i}?>" {if $month==$i} selected="selected" {/if}>{$i}月 </option><?php
+                        ?>
+                        <option value="<?php $i?>" <?php if($month==$i){?> selected="selected" <?php }?>><?php $i?>月 </option>
+                        <?php
                     } ?>
                 </select>
             </div>
