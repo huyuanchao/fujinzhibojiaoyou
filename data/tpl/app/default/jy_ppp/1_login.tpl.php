@@ -84,7 +84,7 @@ $(function () {
               if (data == 1) {
                   window.location.href="<?php  echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('index'),2)?>";
               }
-             /* else if (data==2)
+              else if (data==2)
               {
                   $.tips("用户名或密码错误!");
               }
@@ -94,7 +94,7 @@ $(function () {
               }
               else{
                   $.tips("登陆失败！");
-              }*/
+              }
           });
     })
 });
