@@ -250,7 +250,7 @@ global $_W,$_GPC;
 					}
 				}
 
-				include $this->template('basic');
+				include $this->template('desc');
 			}
 
 		}
