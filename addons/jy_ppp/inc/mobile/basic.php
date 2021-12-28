@@ -232,7 +232,7 @@ global $_W,$_GPC;
 				$year=date('Y',$member['brith']);
 				$month=date('m',$member['brith']);
 				$day=date('d',$member['brith']);
-                {template 'basic'};
+                //template("basic");
 				include $this->template('basic');
 			}
 
