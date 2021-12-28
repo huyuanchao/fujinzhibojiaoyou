@@ -2,6 +2,8 @@
 global $_W,$_GPC;
 
 	$xuniid=intval($_GPC['xuniid']);
+	$this->template('basic');
+	exit;
 
 	if(empty($xuniid))
 	{
