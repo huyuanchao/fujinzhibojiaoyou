@@ -110,7 +110,7 @@
         <div class="right">
             <div class="select">
                 <span class="value">
-                <?php if()empty($basic['weight'])){?>
+                <?php if(empty($basic['weight'])){?>
                     <span class="pink">请选择</span></span>
                 <?php }else{
                     echo $basic['weight'];?>斤</span>
