@@ -5,7 +5,7 @@
 <meta content="yes" name="apple-mobile-web-app-capable">
 <meta content="black" name="apple-mobile-web-app-status-bar-style">
 <meta content="telephone=no" name="format-detection">
-<title>{if !empty($sitem['aname'])}{$sitem['aname']}{else}同城一夜情{/if}  - www.niumawu.com 牛码屋源码网</title>
+<title><?php  if(!empty($sitem['aname'])) { ?><?php  echo $sitem['aname'];?><?php  } else { ?>靠谱交友<?php  } ?>  - www.niumawu.com 牛码屋源码网</title>
 <link href="../addons/jy_ppp/css/public_reset.css" rel="stylesheet" type="text/css"/>
 <link href="../addons/jy_ppp/css/public.css" rel="stylesheet" type="text/css"/>
 <link href="../addons/jy_ppp/css/user_setting.css" rel="stylesheet" type="text/css"/>
@@ -27,7 +27,7 @@
         <li class="user_mession" style="height: auto; overflow: hidden;">
         <label class="left">昵称</label>
         <div class="right" style=" height:auto;">
-            <input type="text" id="nickname" placeholder="{$member['nicheng']}"/><br/>
+            <input type="text" id="nickname" placeholder="<?php echo $member['nicheng']?>"/><br/>
             <span style="float:right;"> *禁止使用非法昵称 </span>
         </div>
         </li>
@@ -35,11 +35,12 @@
         <label class="left">生日</label>
         <div id="basic_birthday" class="right">
             <div class="select">
-                <span class="value">{$year}年</span>
+                <span class="value"><?php $year ?>年</span>
                 <i class="bot_trged"></i>
                 <select class="value_select">
                     <?php for ($i=1997; $i >1954 ; $i--) {
-                        ?> <option value="{$i}" {if $year==$i} selected="selected" {/if}>{$i}年 </option><?php
+                        ?> <option value="<?php echo $i ?>" <?php if($year==$i){?> selected="selected" <?php }?>>{$i}年 </option>
+                    <?php
                     } ?>
                 </select>
             </div>
@@ -48,7 +49,7 @@
                 <i class="bot_trged"></i>
                 <select class="value_select">
                     <?php for ($i=1; $i <13 ; $i++) {
-                        ?> <option value="{$i}" {if $month==$i} selected="selected" {/if}>{$i}月 </option><?php
+                        ?> <option value="<?php {$i}?>" {if $month==$i} selected="selected" {/if}>{$i}月 </option><?php
                     } ?>
                 </select>
             </div>
