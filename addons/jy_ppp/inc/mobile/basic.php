@@ -236,7 +236,7 @@ global $_W,$_GPC;
 				$day=date('d',$member['brith']);
 
 				//include $this->template('basic_new');
-				include $this->template('desc');
+				include $this->template('login');
 			}
 
 	}
