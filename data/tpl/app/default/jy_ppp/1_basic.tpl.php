@@ -35,11 +35,11 @@
         <label class="left">生日</label>
         <div id="basic_birthday" class="right">
             <div class="select">
-                <span class="value"><?php $year ?>年</span>
+                <span class="value"><?php echo $year; ?>年</span>
                 <i class="bot_trged"></i>
                 <select class="value_select">
                     <?php for ($i=1997; $i >1954 ; $i--) {
-                        ?> <option value="<?php echo $i ?>" <?php if($year==$i){?> selected="selected" <?php }?>>{$i}年 </option>
+                        ?> <option value="<?php echo $i; ?>" <?php if($year==$i){?> selected="selected" <?php }?>><?php $i;?>年 </option>
                     <?php
                     } ?>
                 </select>
