@@ -379,7 +379,7 @@
 </div>
 <!--关注-->
 <?php  if($member['type']!=3) { ?>
-<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template(menu, TEMPLATE_INCLUDEPATH)) : (include template(menu, TEMPLATE_INCLUDEPATH));?>
+<?php (!empty($this) && $this instanceof WeModuleSite) ? (include $this->template('menu', TEMPLATE_INCLUDEPATH)) : (include template('menu', TEMPLATE_INCLUDEPATH));?>
 <?php  } else { ?>
 <div class="app-follow" >
     <a href="<?php  echo $this->createMobileUrl('dy_user')?>"><img style="background: none" src="../addons/jy_ppp/images/dy_main.png" /></a>
