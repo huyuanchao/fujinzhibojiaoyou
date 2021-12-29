@@ -38,10 +38,9 @@
                 <span class="value"><?php echo $year; ?>年</span>
                 <i class="bot_trged"></i>
                 <select class="value_select">
-                    <?php for ($i=1997; $i >1954 ; $i--) {
-                        ?> <option value="<?php echo $i;?>" <?php if($year==$i){?> selected="selected" <?php }?>><?php echo $i;?>年 </option>
-                    <?php
-                    } ?>
+                    <?php for ($i=1997; $i >1954 ; $i--) {?>
+                    <option value="<?php echo $i;?>" <?php if($year==$i){?> selected="selected" <?php }?>><?php echo $i;?>年 </option>
+                    <?php } ?>
                 </select>
             </div>
             <div class="select">
@@ -51,17 +50,16 @@
                     <?php for($i=1; $i <13 ; $i++) {
                         ?>
                         <option value="<?php echo $i;?>" <?php if($month==$i){?> selected="selected" <?php }?>><?php echo $i;?>月 </option>
-                        <?php
-                    } ?>
+                    <?php} ?>
                 </select>
             </div>
             <div class="select">
                 <span class="value"><?php echo $day;?>日</span>
                 <i class="bot_trged"></i>
                 <select class="value_select">
-                    <?php for ($i=1; $i <32 ; $i++) {
-                        ?> <option value="<?php echo $i;?>" <?php if($day==$i){?> selected="selected" <?php }?>><?php echo $i;?>日 </option><?php
-                    } ?>
+                    <?php for ($i=1; $i <32 ; $i++) {?>
+                    <option value="<?php echo $i;?>" <?php if($day==$i){?> selected="selected" <?php }?>><?php echo $i;?>日 </option>
+                    <?php } ?>
                 </select>
             </div>
         </div>
@@ -91,16 +89,16 @@
             <div class="select">
                 <span class="value">
                 <?php if(empty($basic['height'])){?>
-                    <span class="pink">请选择</span>
-                <?php}else
-                { echo $basic['height'];}?>cm</span>
+                    <span class="pink">请选择</span></span>
+                <?php }else{
+                    echo $basic['height'];?>cm</span>
+                <?php }?>
                 <i class="bot_trged"></i>
                 <select id="basic_height" class="value_select">
                     <option value="0" style="display:none">请选择</option>
-                    <?php for ($i=140; $i <221 ; $i++) {?>
+                    <?php for($i=140; $i <221 ; $i++) {?>
                     <option value="<?php echo $i;?>" <?php if($basic['height']==$i){?> selected="selected"<?php }?>> <?php echo $i;?>cm </option>
                     <?php} ?>
-
                 </select>
             </div>
         </div>
@@ -118,9 +116,9 @@
                 <i class="bot_trged"></i>
                 <select id="basic_weight" class="value_select">
                         <option value="0" style="display:none">请选择</option>
-                        <?php for ($i=60; $i <301 ; $i++) {
-                            ?> <option value="{$i}" {if $basic['weight']==$i} selected="selected" {/if}>{$i}斤 </option><?php
-                        } ?>
+                        <?php for($i=60; $i <301 ; $i++) {?>
+                            <option value="<?php echo $i;?>" <?php if($basic['weight']==$i){?> selected="selected" <?php }?>><?php echo $i;?>斤 </option>
+                        <?php} ?>
                 </select>
             </div>
         </div>
