@@ -242,7 +242,7 @@ global $_W,$_GPC;
 		if($op=='add')
 		{
 			$mobile=$_GPC['mobile'];
-			$member=pdo_fetch("SELECT id,pwd,from_user FROM ".tablename('jy_ppp_member')." WHERE weid=".$weid." AND mobile='".$mobile."'");
+			$member=pdo_fetch("SELECT id,pwd,from_user FROM ".tablename('jy_ppp_member')." WHERE weid=".$weid." AND (nicheng='".$mobile."' OR mobile='".$mobile."')");
 			if(!empty($member))
 			{
 				$password=$_GPC['password'];
