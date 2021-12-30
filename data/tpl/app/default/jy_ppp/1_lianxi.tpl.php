@@ -28,7 +28,7 @@
 
 <div class="content">
     <div id="visitor_list">
-        {php $now=time();}
+        { $now=time();}
         {loop $lianxi $l}
             <a href="{php echo $this->createMobileUrl('chat',array('id'=>$l['mid']))}"><ul class="disbox-hor user-list"  data-id="{$l['id']}">
                 <li class="foot-icon disbox-center">
