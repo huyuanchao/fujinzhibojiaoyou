@@ -20,7 +20,7 @@
 <div class="content">
     <ul class="test_box">
         <li>
-            <input name="username" type="text" placeholder="请输入帐号">
+            <input name="username" type="text" placeholder="请输入手机号/昵称">
         </li>
         <li>
             <input name="password" type="password" placeholder="请输入密码">
@@ -28,10 +28,12 @@
     </ul>
     <span id="login_btn" class="see_more">立即登录</span>
 	<br>
+	<span id="register_btn" class="see_more register"><a href="{php echo $this->createMobileUrl('zhuce')}">立即注册</a></span>
+    <br>
 
 
 	
-    <span id="login_onekey" class="see_more">一键注册登录</span>
+    <span id="login_onekey" class="see_more">游客浏览 跳过登陆</span>
      <div class="forget">
        <a href="<?php  echo $this->createMobileUrl('forget')?>"><span>忘记密码？</span></a>
     </div>
@@ -50,7 +52,7 @@ $(function () {
         var password=$('input[name="password"]').val();
 
         if(username == ''){
-            $.tips("请输入账号");
+            $.tips("请输入手机号/昵称");
             return ;
         }
         if(password==''){
