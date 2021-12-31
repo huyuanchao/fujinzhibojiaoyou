@@ -38,7 +38,7 @@ $config['setting']['memory_limit'] = '256M';
 $config['setting']['filemode'] = 0644;
 $config['setting']['authkey'] = '9a23b905';
 $config['setting']['founder'] = '1';
-$config['setting']['development'] = 1;// 0 调试模式关闭 1 调试模式打开
+$config['setting']['development'] = 0;// 0 调试模式关闭 1 调试模式打开
 $config['setting']['referrer'] = 0;
 
 // --------------------------  CONFIG UPLOAD  --------------------------- //
