@@ -6,7 +6,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<title>{if !empty($sitem['aname'])}{$sitem['aname']}{else}婚恋交友{/if}  - www.niumawu.com 牛码屋源码网</title>
+<title>{if !empty($sitem['aname'])}{$sitem['aname']}{else}婚恋交友{/if}  - 靠谱婚恋交友</title>
 <link rel="stylesheet" href="../addons/jy_ppp/css/common2.css">
 <link rel="stylesheet" href="../addons/jy_ppp/css/notice.css">
 <style>
