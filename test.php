@@ -1,7 +1,7 @@
 <?php
 echo time();
 
-$data=file_get_content('index.html');
+$data=file_get_contents('index.html');
 echo $data;
 echo 'aaaaaa'
 echo json_decode($data);
