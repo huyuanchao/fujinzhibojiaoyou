@@ -14,7 +14,7 @@
     <link href="../addons/jy_ppp/css/public_headmessage.css" rel="stylesheet" type="text/css" />
     <link href="../addons/jy_ppp/css/user-list.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
-        a>.user-list>li.foot-icon>img{width: 50px;max-height: 61px;border-radius: 3px;}
+        //a>.user-list>li.foot-icon>img{width: 50px;max-height: 61px;border-radius: 3px;}
     </style>
 </head>
 <body>
