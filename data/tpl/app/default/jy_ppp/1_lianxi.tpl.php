@@ -29,7 +29,6 @@
 <div class="content">
     <div id="visitor_list">
         {php $now=time();}
-        /*
         {loop $lianxi $l}
             <a href="{php echo $this->createMobileUrl('chat',array('id'=>$l['mid']))}"><ul class="disbox-hor user-list"  data-id="{$l['id']}">
                 <li class="foot-icon disbox-center">
@@ -53,7 +52,7 @@
                 </li>
                 <div class="right"><span class="hello">聊天</span></div>
             </ul></a>
-        {/loop}*/
+        {/loop}
     </div>
     {if count($visit)>9}
         <div class="see_more" onClick="moreMsg(this)">点击查看更多</div>
