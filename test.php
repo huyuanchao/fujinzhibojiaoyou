@@ -22,9 +22,10 @@ function json_decode_defined($json)
             return $x;
         }
 
-$data=file_get_contents('index.html');
-echo $data;
+//$data=file_get_contents('index.html');
+$da={"城市":"北京","面积":16800,"人口":1600};
+//echo $data;
 echo 'aaaaaa'
-echo json_decode_defined($data);
+echo json_decode_defined($da);
 echo '....';
 ?>
