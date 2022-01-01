@@ -77,7 +77,9 @@ global $_W,$_GPC;
 			}
 			else
 			{
-				$_SESSION['mid']=0;
+			    unset($_SESSION['mid']);
+                session_destroy();
+				//$_SESSION['mid']=0;
 				echo 1;
 				exit;
 			}
