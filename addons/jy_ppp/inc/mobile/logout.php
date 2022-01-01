@@ -79,6 +79,9 @@ global $_W,$_GPC;
 			{
 			    unset($_SESSION['mid']);
                 session_destroy();
+
+                setCookie("mid",'',time()-3600,"/");
+
 				//$_SESSION['mid']=0;
 				echo 1;
 				exit;
