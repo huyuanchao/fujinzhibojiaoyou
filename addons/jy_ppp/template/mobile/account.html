@@ -205,7 +205,7 @@
         $.post("{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('logout'),2)}",function(data){
             if(data==1)
             {
-                $.tips("您已成功退出账号");
+                $.tips("已退出");
                   setTimeout(function(){
                         location.href = "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('login'),2)}";
                     }, 1200);
