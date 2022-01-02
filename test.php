@@ -1,5 +1,5 @@
 <?php
-echo $this->createMobileUrl('login');
-echo substr($this->createMobileUrl('login'),2);
+echo createMobileUrl('login');
+echo substr(createMobileUrl('login'),2);
 ?>
 
