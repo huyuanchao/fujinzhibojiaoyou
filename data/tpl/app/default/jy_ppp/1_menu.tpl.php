@@ -3,9 +3,7 @@
     .
 </style>
 <div class="h5menu"><div>
-
-
-    <div class="myy myy0 myy0on">
+    <!--<div class="myy myy0 myy0on">
             <a href="../../../../zhibo/hots.php">
         <div class="icon_">
         </div>
@@ -13,8 +11,7 @@
             直播
         </div>
       </a>
-</div>
-
+    </div>-->
 
     <?php  if($menu==1) { ?>
     <div class="myy myy1 myy1on">

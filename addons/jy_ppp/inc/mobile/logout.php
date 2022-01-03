@@ -82,7 +82,6 @@ global $_W,$_GPC;
                 session_destroy();
 
                 setCookie("mid",'',time()-3600,"/");
-
 				//$_SESSION['mid']=0;
 				echo 1;
 				exit;
