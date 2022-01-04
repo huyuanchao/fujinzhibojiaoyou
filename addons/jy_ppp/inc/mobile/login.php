@@ -282,13 +282,13 @@ global $_W,$_GPC;
 			{
 				$_SESSION['mid']=$_COOKIE['mid'];
 				echo "<script>
-						window.location.href = '".$this->createMobileUrl('index',array('id'=>$_GPC['id']))."';
+						window.location.href = '".$this->createMobileUrl('luck',array('id'=>$_GPC['id']))."';
 					</script>";									
 			}
 		}else
 		{
 				echo "<script>
-						window.location.href = '".$this->createMobileUrl('index',array('id'=>$_GPC['id']))."';
+						window.location.href = '".$this->createMobileUrl('luck',array('id'=>$_GPC['id']))."';
 					</script>";				
 		}
 		include $this->template('login');
