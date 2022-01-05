@@ -77,11 +77,18 @@ global $_W,$_GPC;
 			}
 			else
 			{
-			    //unset($_SESSION['mid']);
-			    $_SESSION = array();
+			    unset($_SESSION['mid']);
+			    $_SESSION = array();:
+
+                if(isset($_COOKIE[session_name()]))
+                {
+                    //删除包含Session ID的cookie，注意第四个参数一定要和php.ini设置的路径相同
+                    setcookie(session_name(),'',time()-3600,'/');
+                 }
+
+                //setCookie("mid",'',time()-3600,"/");
                 session_destroy();
 
-                setCookie("mid",'',time()-3600,"/");
 				//$_SESSION['mid']=0;
 				echo 1;
 				exit;
