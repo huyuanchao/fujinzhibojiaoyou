@@ -8,8 +8,8 @@ function caculateAKSN($ak, $sk, $url, $querystring_arrays, $method = 'GET')
     $querystring = http_build_query($querystring_arrays);
     return md5(urlencode($url.'?'.$querystring.$sk));
 }
-
-function json_decode($json)
+*/
+function json_decode_defined($json)
 {
     $comment = false;
     $out = '$x=';
@@ -30,7 +30,7 @@ function json_decode($json)
 
     eval($out . ';');
     return $x;
-}*/
+}
 /*
 function json_encode($input)
 {
@@ -81,54 +81,59 @@ function json_encode($input)
          return $input . '';
     }
 }*/
-/*
-$IPaddress='';
-$baidu_ak="8UkanKWlTKOyUqHxiWyu9Smi8o3M43Bk";
-$baidu_sk="AOvWWBcMl5Xk5LHjun4L0Si3qT1XqGyU";
-$tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
 
+function getSiteInfo()
+{
+    $IPaddress='';
+    //$baidu_ak="8UkanKWlTKOyUqHxiWyu9Smi8o3M43Bk";
+    //$baidu_sk="AOvWWBcMl5Xk5LHjun4L0Si3qT1XqGyU";
+    $tencent_key="I62BZ-JGM6P-QI2DU-LWFWJ-CZ3QF-6UFT5";
 
-					    if (isset($_SERVER)){
-					        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
-					            $IPaddress = $_SERVER["HTTP_X_FORWARDED_FOR"];
-					        } else if (isset($_SERVER["HTTP_CLIENT_IP"])) {
-					            $IPaddress = $_SERVER["HTTP_CLIENT_IP"];
-					        } else {
-					            $IPaddress = $_SERVER["REMOTE_ADDR"];
-					        }
-					    } else {
-					        if (getenv("HTTP_X_FORWARDED_FOR")){
-					            $IPaddress = getenv("HTTP_X_FORWARDED_FOR");
-					        } else if (getenv("HTTP_CLIENT_IP")) {
-					            $IPaddress = getenv("HTTP_CLIENT_IP");
-					        } else {
-					            $IPaddress = getenv("REMOTE_ADDR");
-					        }
-					    }
-						$ip = $IPaddress;
+    if (isset($_SERVER)){
+		if (isset($_SERVER["HTTP_X_FORWARDED_FOR"])){
+			$IPaddress = $_SERVER["HTTP_X_FORWARDED_FOR"];
+		} else if (isset($_SERVER["HTTP_CLIENT_IP"])) {
+			$IPaddress = $_SERVER["HTTP_CLIENT_IP"];
+		} else {
+			$IPaddress = $_SERVER["REMOTE_ADDR"];
+		}
+	} else {
+		if (getenv("HTTP_X_FORWARDED_FOR")){
+		    $IPaddress = getenv("HTTP_X_FORWARDED_FOR");
+		} else if (getenv("HTTP_CLIENT_IP")) {
+			$IPaddress = getenv("HTTP_CLIENT_IP");
+		} else {
+			$IPaddress = getenv("REMOTE_ADDR");
+		}
+	}
+	$ip = $IPaddress;
 
-						$ip_arr=explode(',', $ip);
-						$ip=$ip_arr[0];
+	$ip_arr=explode(',', $ip);
+	$ip=$ip_arr[0];
 
-						//$url="http://ip.taobao.com/service/getIpInfo.php?ip=106.38.55.194";//.$ip;
-						//$url="https://api.map.baidu.com/ip?ak=".$baidu_ak."&ip=".$ip."&coor=bd09ll";
-						$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
-                        //$results=file_get_contents($url);
-                        $results=file_get_contents($url);
-                        $json = '{"a":1,"b":2,"c":3,"d":4,"e":5}';
-                        echo "json:".$json;
+	//$url="http://ip.taobao.com/service/getIpInfo.php?ip=106.38.55.194";//.$ip;
+	//$url="https://api.map.baidu.com/ip?ak=".$baidu_ak."&ip=".$ip."&coor=bd09ll";
+	$url="https://apis.map.qq.com/ws/location/v1/ip?ip=".$ip."&key=".$tencent_key;
+    //$results=file_get_contents($url);
+    $results=file_get_contents($url);
 
-                        var_dump(json_decode($json));
+    $ipinfo=json_decode_defined($results);
+    $_GPC['status']=$ipinfo["status"];
 
-                        $ipinfo=json_decode($results);
-                        var_dump($ipinfo);
-                        echo $ipinfo["message"];
-                        echo $ipinfo["result"];
-                        echo $ipinfo["result"]["ip"];
-                        echo $ipinfo["result"]["location"]["lat"]."---".$ipinfo["result"]["location"]["lng"];
+    $_GPC['ip']=$ipinfo["result"]["ip"];
+    $_GPC['lat']=$ipinfo["result"]["location"]["lat"];
+    $_GPC['lng']=$ipinfo["result"]["location"]["lng"];
+    $_GPC['country_name']=$ipinfo["result"]["ad_info"]["nation"];
 
-                        echo $ipinfo["result"]["ad_info"]["nation"].$ipinfo["result"]["ad_info"]["province"].$ipinfo["result"]["ad_info"]["city"];
-*/
+    $_GPC['province_name']=$ipinfo["result"]["ad_info"]["province"];
+    $_GPC['city_name']=$ipinfo["result"]["ad_info"]["city"];
+    $_GPC['county_name']=$ipinfo["result"]["ad_info"]["district"];
+    $_GPC['adcode']=$ipinfo["result"]["ad_info"]["adcode"];
+
+}
+
+getSiteInfo();
+
 ?>
 <!doctype html>
 <html>
