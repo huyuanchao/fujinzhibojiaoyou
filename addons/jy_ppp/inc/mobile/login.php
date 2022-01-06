@@ -281,6 +281,8 @@ global $_W,$_GPC;
 			if($_COOKIE['mid'])
 			{
 			    setcookie('mid','',time()-3600,'/');
+			    echo $_COOKIE['mid'];
+			    exit;
 				$_SESSION['mid']=$_COOKIE['mid'];
 				echo "<script>
 						window.location.href = '".$this->createMobileUrl('luck',array('id'=>$_GPC['id']))."';
