@@ -78,7 +78,7 @@ global $_W,$_GPC;
 			else
 			{
 			    unset($_SESSION['mid']);
-			    $_SESSION = array();:
+			    $_SESSION = array();
 
                 if(isset($_COOKIE["mid"]))
                 {
