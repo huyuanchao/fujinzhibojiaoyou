@@ -83,10 +83,11 @@ global $_W,$_GPC;
                 if(isset($_COOKIE["mid"]))
                 {
                     //删除包含Session ID的cookie，注意第四个参数一定要和php.ini设置的路径相同
+                    echo 5;
                     setcookie("mid",'',time()-3600,'/');
                  }
 
-                //setCookie("mid",'',time()-3600,"/");
+                setCookie("mid",'',time()-3600,"/");
                 session_destroy();
 
 				//$_SESSION['mid']=0;
