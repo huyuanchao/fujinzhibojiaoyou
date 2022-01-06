@@ -17,12 +17,12 @@
 	{/if}
 </style>
 <body class="speed_2015114_body">
-<div class="speed_2015114">
+<div class="speed_2015114"><!--
 	{if empty($sitem['zhuce_text'])}
     <p class="artical">资料真实完整，交流环境干净。</p>
     {else}
     <p class="artical">{$sitem['zhuce_text']}</p>
-    {/if}
+    {/if}-->
     <div class="col_btn col_btn_2">
     	<a href="{php echo $this->createMobileUrl('zhuce2',array('sex'=>1,'rid'=>$rid))}" class="boy_friend">我是男</a>
         <a href="{php echo $this->createMobileUrl('zhuce2',array('sex'=>2,'rid'=>$rid))}" class="girl_friend">我是女</a>
