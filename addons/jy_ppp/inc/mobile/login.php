@@ -280,7 +280,7 @@ global $_W,$_GPC;
 		if(!$_SESSION['mid']){
 			if($_COOKIE['mid'])
 			{
-			    echo 'session 不存在'.$_SESSION['mid'].'cookie'.$_COOKIE['mid'];
+			    echo 'session 不存在'.$_SESSION['mid'].'cookie'.$_COOKIE['mid'].'session_name'.session_name();
 			    exit;
 
 				$_SESSION['mid']=$_COOKIE['mid'];
