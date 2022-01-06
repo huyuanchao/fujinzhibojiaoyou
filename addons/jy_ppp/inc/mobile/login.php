@@ -290,9 +290,6 @@ global $_W,$_GPC;
 			}
 		}else
 		{
-		        echo 'session'.$_SESSION['mid'].'cookie'.$_COOKIE['mid'];
-			    exit;
-
 				echo "<script>
 						window.location.href = '".$this->createMobileUrl('luck',array('id'=>$_GPC['id']))."';
 					</script>";				
