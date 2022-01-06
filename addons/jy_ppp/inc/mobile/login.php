@@ -281,9 +281,9 @@ global $_W,$_GPC;
 			if($_COOKIE['mid'])
 			{
 
-				$_SESSION['mid']=$_COOKIE['mid'];
+				//$_SESSION['mid']=$_COOKIE['mid'];
 				echo "<script>
-						window.location.href = '".$this->createMobileUrl('luck',array('id'=>$_GPC['id']))."';
+						window.location.href = '".$this->createMobileUrl('login',array('id'=>$_GPC['id']))."';
 					</script>";									
 			}
 		}else
