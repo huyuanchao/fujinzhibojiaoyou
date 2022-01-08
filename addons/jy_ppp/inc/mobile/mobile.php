@@ -2,7 +2,6 @@
 global $_W,$_GPC;
 		if ( 1==1 ) {
 			$weixin=0;
-
 			$weid=$_GPC['i'];
 
 			$mid=$_SESSION['mid'];
