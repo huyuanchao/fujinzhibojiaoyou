@@ -3906,6 +3906,10 @@ class Jy_pppModuleSite extends WeModuleSite
     {
         include_once 'inc/mobile/zhuce2.php';
     }
+    public function doMobileZhuce_mobile()
+    {
+        include_once 'inc/mobile/zhuce_mobile.php';
+    }
     public function doMobileLogin()
     {
         include_once 'inc/mobile/login.php';
