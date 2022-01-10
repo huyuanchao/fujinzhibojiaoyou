@@ -38,7 +38,7 @@
     </ul>
     <p id="warnInfo" class="info">
     </p>
-    <span id="nextStep" class="see_more">下一步</span>
+    <span id="nextStep" class="see_more">确定</span>
     </section>
     <section class="honest_03 hidden">
     <p class="repair_success">
@@ -120,7 +120,7 @@ $("#get_btn").bind("click",function(){
 
 
                 $.ajax({
-                    url: "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('mobile',array('op'=>'sms')),2);}",
+                    url: "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('zhuce_mobile',array('op'=>'sms')),2);}",
                     data: {mobile: mobile},
                     dataType: 'text',
                     type: 'post',
@@ -156,7 +156,7 @@ $("#get_btn").bind("click",function(){
                     return;
                 }
                 $.ajax({
-                    url: "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('mobile',array('op'=>'add')),2);}",
+                    url: "{php echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('zhuce_mobile',array('op'=>'add')),2);}",
                     data: {mobile: mobile, code: code},
                     dataType: 'text',
                     type: 'post',
