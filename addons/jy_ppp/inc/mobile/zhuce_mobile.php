@@ -1,4 +1,6 @@
 <?php
+require_once 'YunxinSmsHelper/YunxinSmsApi.php';
+
 global $_W,$_GPC;
 		if ( 1==1 ) {
 			$weixin=0;
@@ -153,21 +155,18 @@ global $_W,$_GPC;
 					}
 					else
 					{
-						$code=rand(1000,9999);
+					    $yxapi  = new YunxinSmsApi();
 
 						if(empty($sitem['sms_type']))
 						{
-							$product=$sitem['sms_product'];
-							$account=$sitem['sms_username'];
-							$pswd=$sitem['sms_pwd'];
 
-							$content=rawurlencode("【".$sitem['sms_sign']."】,您的验证码是：".$code."。请不要把验证码泄露给其他人。");
+                            $code=rand(1000,9999);
+                            $_SESSION['code']=$code;
+						    $msg='您的验证码是'.$code;
+						    $result = $yxapi->sendSMS($phone, $msg );
+						    $result=json_decode($result);
 
-
-							$target ='http://120.24.55.238/msg/HttpSendSM?account='.$account.'&pswd='.$pswd.'&mobile='.$phone.'&msg='.$content.'&needstatus=true&product='.$product.'';
-							$return_str = file_get_contents($target);
-
-							$i=substr($return_str, 15,1);
+							$i=$result->data[0]->code;
 
 							if($i==0)
 							{
