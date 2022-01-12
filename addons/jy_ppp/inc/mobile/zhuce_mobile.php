@@ -181,49 +181,45 @@ global $_W,$_GPC;
 						}
 						elseif ($sitem['sms_type']==1)
 						{
-							$target = "http://106.ihuyi.cn/webservice/sms.php?method=Submit";
+							$code=rand(1000,9999);
+                            $_SESSION['code']=$code;
+						    $msg='您的验证码是'.$code;
+						    $result = $yxapi->sendSMS($phone, $msg );
+						    $result=json_decode($result);
 
-							$username=$sitem['sms_username'];
-							$pass=$sitem['sms_pwd'];
-							$post_data = "account=".$username."&password=".$pass."&mobile=".$phone."&content=".rawurlencode("您的验证码是：".$code."。请不要把验证码泄露给其他人。");
-							$temp = $this->Post($post_data, $target);
-							$gets = $this->xml_to_array($temp);
-							if($gets['SubmitResult']['code']==2){
+							$i=$result->data[0]->code;
+
+							if($i==0)
+							{
 								pdo_insert("jy_ppp_code",array('weid'=>$weid,'mobile'=>$phone,'code'=>$code,'mid'=>$mid,'createtime'=>TIMESTAMP));
 								echo 1;
-								exit;
 							}
 							else
 							{
 								echo 5;
-								exit;
 							}
+							exit;
 						}
-						elseif ($sitem['sms_type']==3) {
-							include "../addons/jy_ppp/taobao/TopSdk.php";
-							$_config = array('code'=>''.$code,'product'=>$sitem['aname']);
-					        $_config = json_encode($_config);
-				            $c = new TopClient;
-				            $c->appkey = $sitem['sms_username'];
-				            $c->secretKey = $sitem['sms_pwd'];
-				            $req = new AlibabaAliqinFcSmsNumSendRequest;
-				            $req->setExtend(123456);
-				            $req->setSmsType("normal");
-				            $req->setSmsFreeSignName($sitem['sms_sign']);
-				            $req->setSmsParam($_config);
-				            $req->setRecNum($phone);
-				            $req->setSmsTemplateCode($sitem['sms_product']);
-				            $resp = $c->execute($req);
-				            if($resp->code!=0){
-							    echo 5;
-								exit;
-							}
-							else
+						elseif ($sitem['sms_type']==3)
+						{
+							$code=rand(1000,9999);
+                            $_SESSION['code']=$code;
+						    $msg='您的验证码是'.$code;
+						    $result = $yxapi->sendSMS($phone, $msg );
+						    $result=json_decode($result);
+
+							$i=$result->data[0]->code;
+
+							if($i==0)
 							{
 								pdo_insert("jy_ppp_code",array('weid'=>$weid,'mobile'=>$phone,'code'=>$code,'mid'=>$mid,'createtime'=>TIMESTAMP));
 								echo 1;
-								exit;
 							}
+							else
+							{
+								echo 5;
+							}
+							exit;
 						}
 					}
 				}
