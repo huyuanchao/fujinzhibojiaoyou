@@ -4,7 +4,51 @@
 交友 数据库 /data/config.php
 后台 http://域名/web    账号admin 密码admin
 
-微擎目录
+
+11111------------微擎mvc结构：
+控制器
+控制器以文件夹、文件的形式组织，位于系统的 source 目录下，每一个目录代表一个 controller ，文件夹中的每个文件即为一个 action。
+
+某些情况，一个action可能可能会包含多个操作，系统中提供 do 参数来用于区分同一个 action 中的不同操作。
+
+例如：http://pro.we7.cc/web/index.php?c=extension&a=module&do=designer 地址中表示，extension为控制器，module为action，designer为该action下的某一个具体的do
+
+模型
+系统的模型位于 framework/model 目录下，每一个文件代表一个独立的功能模型，模型通常会与控制器对应。加载模型时以可使用 load() 函数
+
+模板
+系统的模板位于 [web|app]/themes/default/ 中，模板文件与 controller, action 对应，系统提供了简单的模板引擎机制，具体请参看模板引擎
+
+2222222--------地址URL地址路由
+
+当传入的URL请求中包含一个名为 c、a、do(可选) 的 GET 参数，它即被视为一个路由，例如：
+
+http://we7.cc/web/index.php?c=platform&a=menu&
+
+则会路由至 /web/source/platform/menu.ctrl.php 文件中
+
+http://we7.cc/app/index.php?c=mc&a=home&
+
+则会路由至 /app/source/mc/home.ctrl.php 文件中
+
+#####模块URL地址路由
+
+当传入的 c 值为 “site”, a 值为 “entry”时则是一个模块路由，例如：
+
+http://we7.cc/web/index.php?c=site&a=entry&do=themeset&m=we7_demo
+
+则会路由至 /addons/we7_demo/site.php 文件中的 doWebThemeset() 方法。
+
+http://we7.cc/app/index.php?i=1&j=2&c=entry&do=list&m=we7_demo
+
+则会路由至 /addons/we7_demo/site.php 文件中的 doMobileList() 方法。
+
+####约定及使用
+
+GET 参数中的 c、a、do为微擎系统的路由参数，应当避免与系统参数冲突，在程序中可以使用 $controller、$action、$do来获取对应的路由三个参数
+
+
+3333333-----------微擎目录
 
 ├─ addons ………………………………………… 【模块安装目录】 (意为附加组件)
 

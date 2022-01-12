@@ -5,7 +5,7 @@
     <meta content="yes" name="apple-mobile-web-app-capable">
     <meta content="black" name="apple-mobile-web-app-status-bar-style">
     <meta content="telephone=no" name="format-detection">
-    <title><?php  if(!empty($sitem['aname'])) { ?><?php  echo $sitem['aname'];?><?php  } else { ?>同城一夜情<?php  } ?>  - www.niumawu.com 牛码屋源码网</title>
+    <title><?php  if(!empty($sitem['aname'])) { ?><?php  echo $sitem['aname'];?><?php  } else { ?>靠谱婚恋交友<?php  } ?>  - 靠谱婚恋交友</title>
     <link href="../addons/jy_ppp/css/public_reset.css" rel="stylesheet" type="text/css" />
     <link href="../addons/jy_ppp/css/public.css" rel="stylesheet" type="text/css" />
     <link href="../addons/jy_ppp/css/phone_register.css" rel="stylesheet" type="text/css" />
@@ -20,7 +20,7 @@
 <div class="content">
     <ul class="test_box">
         <li>
-            <input name="username" type="text" placeholder="请输入帐号">
+            <input name="username" type="text" placeholder="请输入手机号/昵称">
         </li>
         <li>
             <input name="password" type="password" placeholder="请输入密码">
@@ -29,9 +29,8 @@
     <span id="login_btn" class="see_more">立即登录</span>
 	<br>
 
-
 	
-    <span id="login_onekey" class="see_more">一键注册登录</span>
+    <span id="login_onekey" class="see_more">游客浏览 跳过登陆</span>
      <div class="forget">
        <a href="<?php  echo $this->createMobileUrl('forget')?>"><span>忘记密码？</span></a>
     </div>
@@ -50,7 +49,7 @@ $(function () {
         var password=$('input[name="password"]').val();
 
         if(username == ''){
-            $.tips("请输入账号");
+            $.tips("请输入手机号/昵称");
             return ;
         }
         if(password==''){
@@ -84,7 +83,7 @@ $(function () {
               if (data == 1) {
                   window.location.href="<?php  echo $_W['siteroot'].'app/'.substr($this->createMobileUrl('index'),2)?>";
               }
-             /* else if (data==2)
+              else if (data==2)
               {
                   $.tips("用户名或密码错误!");
               }
@@ -94,7 +93,7 @@ $(function () {
               }
               else{
                   $.tips("登陆失败！");
-              }*/
+              }
           });
     })
 });

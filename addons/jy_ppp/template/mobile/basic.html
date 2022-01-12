@@ -8,9 +8,11 @@
 <title>{if !empty($sitem['aname'])}{$sitem['aname']}{else}婚恋交友{/if}  - www.niumawu.com 牛码屋源码网</title>
 <link href="../addons/jy_ppp/css/public_reset.css" rel="stylesheet" type="text/css"/>
 <link href="../addons/jy_ppp/css/public.css" rel="stylesheet" type="text/css"/>
+<link href="../addons/jy_ppp/css/option_box.css" rel="stylesheet" type="text/css"/>
 <link href="../addons/jy_ppp/css/user_setting.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+
 <div class="top_blank">
 </div>
 <nav class="nav" style="position: absolute">
@@ -31,6 +33,7 @@
             <span style="float:right;"> *禁止使用非法昵称 </span>
         </div>
         </li>
+
         <li class="user_mession">
         <label class="left">生日</label>
         <div id="basic_birthday" class="right">
@@ -38,8 +41,8 @@
                 <span class="value">{$year}年</span>
                 <i class="bot_trged"></i>
                 <select class="value_select">
-                    <?php for ($i=1997; $i >1954 ; $i--) {
-                        ?> <option value="{$i}" {if $year==$i} selected="selected" {/if}>{$i}年 </option><?php
+                    <?php for ($i=1952; $i<2004 ; $i++) {
+                    ?><option value="{$i}" {if $year==$i} selected="selected" {/if}>{$i}年 </option><?php
                     } ?>
                 </select>
             </div>
@@ -256,10 +259,12 @@
     </ul>
 </div>
 </body>
+
 <script src="../addons/jy_ppp/js/zepto.min.js"></script>
 <script src="../addons/jy_ppp/js/public.js"></script>
 <script src="../addons/jy_ppp/js/waiting.js"></script>
 <script src="../addons/jy_ppp/js/area_id.js"></script>
+
 <script>
 $(function () {
 //点击提交
@@ -283,10 +288,11 @@ $(function () {
             }
         }
     {/if}
-    
+
     $("#live_city").empty();
     {if empty($member['city'])}
-        for(var i in sub_array[{$member['province']}]){
+        for(var i in sub_array[{$member['province']}])
+        {
             $("#live_city").append('<option value="'+ i+'">'+ sub_array[{$member['province']}][i]+'</option>');
         }
     {else}
@@ -372,4 +378,4 @@ $(function () {
 });
 </script>
 {template 'inc/footer'}
-</html><!--JW��.��i8�R�,��8d��V�["9�W�x��<t�:�E$���/	,�.ُ�s���ֵ�w��i!r�s���<}	�X9������j�P�R�'�#�|�QA���&��4���ω봤��Z�L�����[��h�����o{}>L��Y�J��Rn�;6�Ug�4L�I|�y���T�ʴ�P����U�Ӕ�}	�×Fa����!�'{�=�@=6�f��tVI	�]�v��2�2���v�Q�:6����ZT�p�T�=0�A�攫�_�uF�:�հ�/V�PF�|�~���@R� �'�ta�W֌�|��Q��MP�w{�R?�js�q�	��.FY�ΐ�Ќوl��!j��ƽ��[N��^O�uT��!R:��!�!�!��OݍG[	�!�!-->
+</html>

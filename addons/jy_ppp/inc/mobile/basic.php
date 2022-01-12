@@ -2,6 +2,7 @@
 global $_W,$_GPC;
 
 	$xuniid=intval($_GPC['xuniid']);
+
 	if(empty($xuniid))
 	{
 		if ( 1==1 ) {
@@ -10,6 +11,7 @@ global $_W,$_GPC;
 			$weid=$_GPC['i'];
 
 			$mid=$_SESSION['mid'];
+
 			if(!empty($mid))
 			{
 				$member=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_member')." WHERE weid=".$weid." AND id=".$mid." AND status=1");
@@ -62,6 +64,7 @@ global $_W,$_GPC;
 			$weid=$_GPC['i'];
 
 			$dyid=$_SESSION['dyid'];
+
 			if(!empty($dyid))
 			{
 				$dianyuan=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_dianyuan')." WHERE weid=".$weid." AND id=".$dyid);
@@ -92,6 +95,7 @@ global $_W,$_GPC;
 					$uid=$member_temp['uid'];
 					unset($member_temp);
 				}
+
 				if(empty($uid))
 				{
 					echo "<script>
@@ -105,6 +109,7 @@ global $_W,$_GPC;
 				}
 			}
 		}
+
 		if(empty($dianyuan))
 		{
 			echo "<script>
@@ -130,6 +135,7 @@ global $_W,$_GPC;
 	}
 
 	$sitem=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_setting')." WHERE weid=".$weid);
+
 	if(empty($member) && $weixin==1 && !empty($sitem['unzhuce']) )
 	{
 		$this->unzhuce();
@@ -137,11 +143,11 @@ global $_W,$_GPC;
 		$mid=$member['id'];
 	}
 
-		if(!empty($member))
-		{
+	if(!empty($member))
+	{
 			$basic=pdo_fetch("SELECT * FROM ".tablename('jy_ppp_basic')." WHERE weid=".$weid." AND mid=".$mid);
-
 			$op=$_GPC['op'];
+
 			if($op=='add')
 			{
 				$nicheng=$_GPC['nicheng'];
@@ -226,13 +232,13 @@ global $_W,$_GPC;
 				$year=date('Y',$member['brith']);
 				$month=date('m',$member['brith']);
 				$day=date('d',$member['brith']);
-
+                //template("basic");
 				include $this->template('basic');
 			}
 
-		}
-		else
-		{
+	}
+	else
+	{
 			if($weixin==1)
 			{
 				echo "<script>
@@ -245,4 +251,4 @@ global $_W,$_GPC;
 						window.location.href = '".$this->createMobileUrl('login')."';
 					</script>";
 			}
-		}
+	}

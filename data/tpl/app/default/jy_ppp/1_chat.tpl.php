@@ -5,7 +5,7 @@
 <meta content="yes" name="apple-mobile-web-app-capable">
 <meta content="black" name="apple-mobile-web-app-status-bar-style">
 <meta content="telephone=no" name="format-detection">
-<title><?php  if(!empty($sitem['aname'])) { ?><?php  echo $sitem['aname'];?><?php  } else { ?>同城一夜情<?php  } ?>  - www.niumawu.com 牛码屋源码网</title>
+<title><?php  if(!empty($sitem['aname'])) { ?><?php  echo $sitem['aname'];?><?php  } else { ?>靠谱婚恋交友<?php  } ?>  - 靠谱婚恋交友</title>
 <link href="../addons/jy_ppp/css/public_reset.css" rel="stylesheet" type="text/css"/>
 <link href="../addons/jy_ppp/css/public.css" rel="stylesheet" type="text/css"/>
 <link href="../addons/jy_ppp/css/public_disbox.css" rel="stylesheet" type="text/css"/>

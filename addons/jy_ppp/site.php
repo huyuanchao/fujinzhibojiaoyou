@@ -3070,16 +3070,9 @@ class Jy_pppModuleSite extends WeModuleSite
         include_once 'inc/mobile/userthumb.php';
     }
 
-
-
-
-
-
     public function doMobileChat()
     {
         global $_W, $_GPC;
-
-
 
         if (1==1) {
             $weixin = 0;
@@ -3110,8 +3103,6 @@ class Jy_pppModuleSite extends WeModuleSite
                 }
             }
         }
-
-
 
         $this->faxin();
         $sitem = pdo_fetch("SELECT * FROM " . tablename('jy_ppp_setting') . " WHERE weid=" . $weid);
@@ -3914,6 +3905,10 @@ class Jy_pppModuleSite extends WeModuleSite
     public function doMobileZhuce2()
     {
         include_once 'inc/mobile/zhuce2.php';
+    }
+    public function doMobileZhuce_mobile()
+    {
+        include_once 'inc/mobile/zhuce_mobile.php';
     }
     public function doMobileLogin()
     {
