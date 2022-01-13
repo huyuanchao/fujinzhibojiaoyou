@@ -157,7 +157,7 @@ global $_W,$_GPC;
 					{
 					    $yxapi  = new YunxinSmsApi();
 
-						if(empty($sitem['sms_type']))
+						if(!empty($sitem['sms_type']))
 						{
 
                             $code=rand(1000,9999);
