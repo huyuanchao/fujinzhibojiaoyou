@@ -11,6 +11,7 @@ class YunxinSmsApi {
 		$this->yunxin_config['api_send_url'] = 'https://u.smsyun.cc/sms-partner/access/b05qx8/sendsms';
 
 		//云信账号 替换成你自己的账号
+
 		 $this->yunxin_config['api_account']	= 'b05qx8';
 
 		//云信密码 替换成你自己的密码

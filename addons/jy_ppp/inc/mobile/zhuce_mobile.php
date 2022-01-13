@@ -64,6 +64,9 @@ global $_W,$_GPC;
 			$op=$_GPC['op'];
 			if($op=='add')
 			{
+			    echo 'add';
+			    exit;
+
 				$phone=$_GPC['mobile'];
 				$code=$_GPC['code'];
 				$user=pdo_fetch('SELECT * FROM '.tablename('jy_ppp_mobile')." WHERE weid=".$weid." AND mobile='$phone'");
@@ -128,6 +131,8 @@ global $_W,$_GPC;
 			}
 			if($op=='sms')
 			{
+			    echo 'sms';
+			    exit;
 				$phone=$_GPC['mobile'];
 				$user=pdo_fetch('SELECT * FROM '.tablename('jy_ppp_mobile')." WHERE weid=".$weid." AND mobile='$phone'");
 				if(!empty($user))
