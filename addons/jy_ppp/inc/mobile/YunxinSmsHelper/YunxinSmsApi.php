@@ -4,7 +4,7 @@ header("Content-type:text/html; charset=UTF-8");
 class YunxinSmsApi {
 	
 	var $yunxin_config=array();
-
+    /*
 	function __construct(){
 
 		//云信接口URL, 请求地址请参考云信互联云通讯自助通平台查看或者询问您的商务负责人获取
@@ -16,7 +16,7 @@ class YunxinSmsApi {
 
 		//云信密码 替换成你自己的密码
 		 $this->yunxin_config['api_password']	= md5('12345678');
-	}
+	}*/
 	/**
 	 * 发送短信
 	 *
@@ -28,15 +28,15 @@ class YunxinSmsApi {
 		//云信接口参数
 		$postArr = array (
 			'smstype' =>'4',//短信发送发送
-			'clientid'  =>  $this->yunxin_config['api_account'],
-			'password' => $this->yunxin_config['api_password'],
+			'clientid'  =>  'b05qx8',
+			'password' => md5('12345678'),
 			'mobile' => $mobile,
 			'content' => $msg ,
 			'sendtime'=>date('Y-m-d H:i:s'),
 			'extend'=>'00',
 			'uid'=>'00'
         );
-		$result = $this->curlPost( $this->yunxin_config['api_send_url'] , $postArr);
+		$result = $this->curlPost( 'https://u.smsyun.cc/sms-partner/access/b05qx8/sendsms' , $postArr);
 		return $result;
 	}
 
