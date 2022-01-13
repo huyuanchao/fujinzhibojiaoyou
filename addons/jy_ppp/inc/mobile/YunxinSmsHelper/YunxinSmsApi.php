@@ -8,7 +8,7 @@ class YunxinSmsApi {
 	function __construct(){
 
 		//云信接口URL, 请求地址请参考云信互联云通讯自助通平台查看或者询问您的商务负责人获取
-		$this->yunxin_config['api_send_url'] = 'https://u.smsyun.cc/sms-partner/access/{b05qx8}/sendsms';
+		$this->yunxin_config['api_send_url'] = 'https://u.smsyun.cc/sms-partner/access/b05qx8/sendsms';
 
 		//云信账号 替换成你自己的账号
 		 $this->yunxin_config['api_account']	= 'b05qx8';

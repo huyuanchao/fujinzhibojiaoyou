@@ -175,7 +175,7 @@ global $_W,$_GPC;
 							}
 							else
 							{
-								echo 5;
+								echo $result->data[0]->code;
 							}
 							exit;
 						}
@@ -196,7 +196,7 @@ global $_W,$_GPC;
 							}
 							else
 							{
-								echo 5;
+								echo $result->data[0]->code;
 							}
 							exit;
 						}
@@ -217,7 +217,7 @@ global $_W,$_GPC;
 							}
 							else
 							{
-								echo 5;
+								echo $result->data[0]->code;
 							}
 							exit;
 						}
