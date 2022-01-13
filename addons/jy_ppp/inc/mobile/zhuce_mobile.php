@@ -229,7 +229,7 @@ global $_W,$_GPC;
 					}
 				}
 			}
-			include $this->template('mobile');
+			include $this->template('zhuce_mobile');
 		}
 		else
 		{
