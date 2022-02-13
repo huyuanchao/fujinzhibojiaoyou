@@ -168,7 +168,8 @@ global $_W,$_GPC;
 
 							$i=$result->data[0]->code;
 
-							echo $result;
+							echo 'oo';
+
 
 							exit;
 
