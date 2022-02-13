@@ -54,7 +54,7 @@ class YunxinSmsApi {
 		//echo $postFields;
 		$ch = curl_init ();
 		curl_setopt( $ch, CURLOPT_URL, $url ); 
-		curl_setopt( $ch, CURLOPT_HTTPHEADER, array(在想cvbn
+		curl_setopt( $ch, CURLOPT_HTTPHEADER, array(
 			'Accept-Encoding: identity',
 			'Content-Length: ' . strlen($postFields),
 			'Accept:application/json',
