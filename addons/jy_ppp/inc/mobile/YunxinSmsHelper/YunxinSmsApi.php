@@ -36,7 +36,7 @@ class YunxinSmsApi {
 			'extend'=>'00',
 			'uid'=>'00'
         );
-		$result = $this->curlPost( 'https://u.smsyun.cc/sms-partner/access/b05qx8/sendsms' , $postArr);
+		$result = $this->curlPost( 'https://u.smsyun.cc/sms-partner/access/{b05qx8}/sendsms' , $postArr);
 		return $result;
 	}
 
