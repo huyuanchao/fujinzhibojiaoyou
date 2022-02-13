@@ -168,6 +168,10 @@ global $_W,$_GPC;
 
 							$i=$result->data[0]->code;
 
+							echo $result;
+
+							exit;
+
 							if($i==0)
 							{
 								pdo_insert("jy_ppp_code",array('weid'=>$weid,'mobile'=>$phone,'code'=>$code,'mid'=>$mid,'createtime'=>TIMESTAMP));
@@ -189,9 +193,7 @@ global $_W,$_GPC;
 
 							$i=$result->data[0]->code;
 
-							echo $result;
 
-							exit;
 
 							if($i==0)
 							{
