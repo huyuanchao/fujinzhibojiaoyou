@@ -163,7 +163,7 @@ global $_W,$_GPC;
                             $code=rand(1000,9999);
                             $_SESSION['code']=$code;
 						    $msg='您的验证码是'.$code;
-						    $result = $yxapi->sendSMS($phone, $msg );
+						    $result = $yxapi->sendSMS($phone, $msg);
 						    $result=json_decode($result);
 
 							$i=$result->data[0]->code;
@@ -188,6 +188,10 @@ global $_W,$_GPC;
 						    $result=json_decode($result);
 
 							$i=$result->data[0]->code;
+
+							echo $result;
+
+							exit;
 
 							if($i==0)
 							{
