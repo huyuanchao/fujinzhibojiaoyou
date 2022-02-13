@@ -136,7 +136,7 @@ $("#get_btn").bind("click",function(){
                         }else if (data == 3) {
                             Auth.errorInfo("一天最多发送四条验证码");
                         } else {
-                            Auth.errorInfo("发送失败");
+                            Auth.errorInfo("发送失败"+data);
                         }
                     },error:function(){
                         Auth.errorInfo("发送失败");
